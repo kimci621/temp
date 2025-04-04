@@ -1,0 +1,27 @@
+.footerInner {
+  display: grid;
+  grid-template-areas:
+    "footerTitle"
+    "footerForm"
+    "footerLinks";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+
+  @media (min-width: 768px) {
+    grid-template-areas:
+    "footerTitle"
+    "footerForm"
+    "footerLinks";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-areas:
+    "footerTitle footerForm"
+    "footerLinks footerForm";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

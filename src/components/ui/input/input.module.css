@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem; /* 1.5 */
+}
+
+.labelDark {
+  color: var(--text-dark);
+}
+
+.labelLight {
+  color: var(--text-light);
+}
+
+.input {
+  display: flex;
+  height: 52px;
+  width: 100%;
+  border-radius: 0.75rem; /* rounded-xl */
+  border: 1px solid var(--border-light);
+  background-color: var(--fill-white);
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem; /* text-lg */
+  color: var(--text-light);
+  font-weight: 600;
+  outline: none;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.input[type="number"] {
+  appearance: textfield;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.inputError {
+  border-color: var(--destructive);
+}
+
+.errorText {
+  font-size: 0.875rem;
+  color: #f87171; /* red-400 */
+}

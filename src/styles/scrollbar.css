@@ -1,0 +1,120 @@
+/* ===== Scrollbar for WebKit Browsers (Chrome, Safari, Edge) ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Adjust width as needed */
+  background-color: transparent;
+  /* Dark background for contrast */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(62, 184, 121, 0.4);
+  /* Light thumb for contrast */
+  border-radius: 12px;
+  /* Optional: rounded corners for the thumb */
+  border: 1px solid transparent;
+  /* Dark border for better definition */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: grab;
+  background-color: rgba(62, 184, 121, 0.58);
+  /* Slightly darker on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  /* Slightly lighter dark track */
+}
+
+/* ===== Scrollbar for Firefox ===== */
+/* Note: Firefox uses different properties for scrollbar customization */
+/* You might need to enable this feature in Firefox settings (toolkit.legacyUserProfileCustomizations.stylesheets = true and restart) */
+/* Or use a browser extension for more consistent cross-browser styling */
+
+/* Example Firefox styling (may not have the exact same level of customization as WebKit) */
+/*html {*/
+/*  scrollbar-color: #eee #222; !* thumb track *!*/
+/*  scrollbar-width: thin;*/
+/*}*/
+
+/* ===== Global Styles to Apply the Scrollbar ===== */
+/* Apply to the root element or the elements you want to have the custom scrollbar */
+html {
+  overflow-y: auto;
+  /* Ensure vertical scrollbar appears when needed */
+  scrollbar-width: thin;
+  /* For Firefox's basic styling */
+}
+
+body {
+  overflow-y: auto;
+  /* Ensure vertical scrollbar appears when needed */
+}
+
+/* Hidden scrollbal conatiner */
+.hidden-x-scrollbar {
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.hidden-x-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+.hidden-y-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.hidden-y-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+.hidden-scrollbar {
+  overflow: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+/* If you have specific scrollable containers, you can target them as well */
+/* .scrollable-container {
+  overflow-y: auto;
+} */
+
+/* ===== Explanation of the CSS ===== */
+
+/* ::-webkit-scrollbar: Targets the entire scrollbar area. */
+/* width: Sets the width of the vertical scrollbar. For a horizontal scrollbar, use height. */
+/* background-color: Sets the background color of the scrollbar track. */
+
+/* ::-webkit-scrollbar-thumb: Targets the draggable "thumb" or handle of the scrollbar. */
+/* background-color: Sets the color of the scrollbar thumb. */
+/* border-radius: Adds rounded corners to the thumb. */
+/* border: Adds a border around the thumb for better visibility. */
+
+/* ::-webkit-scrollbar-thumb:hover: Styles the thumb when the user hovers over it. */
+/* background-color: Changes the background color on hover, providing feedback. */
+
+/* ::-webkit-scrollbar-track: Targets the track (the area behind the thumb). */
+/* background-color: Sets the background color of the scrollbar track. */
+
+/* scrollbar-color (Firefox): Sets the color of the scrollbar thumb and track respectively. */
+/* scrollbar-width (Firefox): Can be set to 'auto', 'thin', or 'none'. */
+
+/* html and body: Applying overflow-y: auto ensures that a vertical scrollbar will appear when the content exceeds the viewport height. */
+/* scrollbar-width: thin on the html element provides a basic level of scrollbar styling in Firefox. */

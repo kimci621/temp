@@ -1,0 +1,44 @@
+.bg-carousel-liquid-1 {
+  border-radius: 16px;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(182deg,
+      #8f7fae -13.84%,
+      #3f3963 82.76%,
+      #30284e 140.73%);
+  box-shadow: 0 8px 100px 0 rgba(92, 83, 127, 0.5);
+}
+
+.bg-carousel-liquid-2 {
+  border-radius: 16px;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(208deg,
+      #aee1fc -42.2%,
+      #2d799c 56.65%,
+      #7666e4 107.84%);
+  box-shadow: 0 8px 100px 0 rgba(57, 131, 165, 0.5);
+}
+
+.bg-carousel-liquid-3 {
+  border-radius: 16px;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(28deg,
+      #f3857d -33.34%,
+      #f16477 -24.22%,
+      #4ea8c0 106.93%);
+  box-shadow: 0 8px 100px 0 rgba(148, 139, 161, 0.5);
+}
+
+.bg-carousel-liquid-4 {
+  border-radius: 16px;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(232deg,
+      #b1c1c3 9.72%,
+      #dd9747 62.53%,
+      #d16404 109.31%);
+  box-shadow: 0 8px 100px 0 rgba(210, 163, 104, 0.5);
+}
+
+.backdrop-blur-250px {
+  opacity: 0.75;
+  backdrop-filter: blur(25px);
+}
