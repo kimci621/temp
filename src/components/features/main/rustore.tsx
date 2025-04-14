@@ -3,8 +3,6 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import TypographyAnimated from '@/components/ui/typography-animated';
-import AnimationBlur from '../animation/blur';
 
 export function MainRustore() {
   return (
@@ -23,25 +21,21 @@ export function MainRustore() {
               height={48}
             />
 
-            <TypographyAnimated
+            <Typography
               variant={'h3-medium'}
               className={'text-(--text-dark)'}
-              animationAmount={0.2}
-              animationDuration={0.75}
             >
               Скачайте наше приложение
-            </TypographyAnimated>
+            </Typography>
           </div>
 
-          <TypographyAnimated
+          <Typography
             variant={'text'}
             className={'text-(--text-dark)'}
-            animationAmount={0.2}
-            animationDuration={0.75}
           >
             Просматривайте отклики, общайтесь с кандидатами и следите за расписанием собеседований из любого места и в
             любое время
-          </TypographyAnimated>
+          </Typography>
         </div>
 
         <div className={'flex items-center gap-4'}>
@@ -99,20 +93,18 @@ export function MainRustore() {
         </div>
       </article>
 
-      <AnimationBlur>
-        <div className={'relative w-full md:w-[271px] h-[368px] md:h-[260px] flex items-center justify-center'}>
-          <Image
-            src={'/images/iphone-rustore.png'}
-            alt={'rustore'}
-            width={700}
-            height={1000}
-            quality={100}
-            className={
-              'md:absolute md:top-1/2 xl:top-[calc(107px)] translate-y-7 md:-translate-y-1/2  md:left-0 object-contain w-[271px] h-[368px]  '
-            }
-          />
-        </div>
-      </AnimationBlur>
+      <div className={'relative w-full md:w-[271px] h-[368px] md:h-[260px] flex items-center justify-center'}>
+        <Image
+          src={'/images/iphone-rustore.png'}
+          alt={'rustore'}
+          width={700}
+          height={1000}
+          quality={100}
+          className={
+            'md:absolute md:top-1/2 xl:top-[calc(107px)] translate-y-7 md:-translate-y-1/2  md:left-0 object-contain w-[271px] h-[368px]  '
+          }
+        />
+      </div>
     </div>
   );
 }

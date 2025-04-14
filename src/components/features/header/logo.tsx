@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { cn } from '@/lib/utils';
+
 export function HeaderLogo() {
   return (
     <Link
@@ -15,7 +17,7 @@ export function HeaderLogo() {
         className="w-10 h-10 xl:w-12 xl:h-12"
       />
 
-      <h1 className="font-semibold text-2xl text-(--border-dark)">Huntlee</h1>
+      <h1 className={cn('text-2xl text-(--border-dark) montserrat-font font-semibold')}>Huntlee</h1>
     </Link>
   );
 }

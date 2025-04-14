@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { navigationItems, type NavItem } from '@/lib/consts/navbar';
 import { cn } from '@/lib/utils/cn';
 import { ButtonWithVideo } from '@/components/features/button-with-video';
+import Typography from '@/components/ui/typography';
 
 export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x' | 'y'; className?: string }) => {
   const activeRoute = usePathname();
@@ -23,7 +24,7 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
   return (
     <div className={className}>
       {orientation === 'x' && (
-        <nav className={cn('hidden xl:flex items-center gap-1 xl:bg-(--border-light) xl:p-1 xl:rounded-xl')}>
+        <nav className={cn('hidden xl:flex items-center gap-1 xl:bg-(--border-light) xl:p-1 xl:rounded-[16px]')}>
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -33,13 +34,15 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
                 variant={item.isActive ? 'white' : 'ghost'}
                 className={'text-(--text-light)'}
               >
-                {item.label}
+                <Typography variant={'button'}>{item.label}</Typography>
               </Button>
             </Link>
           ))}
 
           <Link href="https://huntlee.ru/login">
-            <Button variant="secondary">Вход/Регистрация</Button>
+            <Button variant="secondary">
+              <Typography variant={'button'}>Войти</Typography>
+            </Button>
           </Link>
         </nav>
       )}
@@ -56,7 +59,7 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
                   variant={item.isActive ? 'white' : 'ghost'}
                   className={'text-(--text-light) w-full'}
                 >
-                  {item.label}
+                  <Typography variant={'button'}>{item.label}</Typography>
                 </Button>
               </Link>
             ))}
@@ -71,7 +74,7 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
                 variant="secondary"
                 className={'w-full'}
               >
-                Вход/Регистрация
+                <Typography variant={'button'}>Войти</Typography>
               </Button>
             </Link>
 

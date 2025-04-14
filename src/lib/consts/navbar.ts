@@ -5,6 +5,7 @@ export interface NavItem {
 }
 export const navigationItems: NavItem[] = [
   { label: 'Главная', href: '/', isActive: false },
+  { label: 'Тарифы', href: '#tariffs-section', isActive: false },
   // { label: 'О продукте', href: '/about', isActive: false },
   // { label: 'Блог', href: '/blog', isActive: false },
 ];

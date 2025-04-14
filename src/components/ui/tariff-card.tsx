@@ -35,7 +35,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
   };
 
   const subTitleText = {
-    free: 'Всё, что нужно для эффективного рекрутинга – без ограничений по возможностям!',
+    free: 'Всё, что нужно для эффективного рекрутинга',
     business: 'Расширенные возможности для роста и эффективности',
   };
 
@@ -58,13 +58,14 @@ export function TariffCard({ type }: { type: TariffCardType }) {
   const preferences = {
     free: [
       'Полный доступ ко всем инструментам, за исключением ИИ',
-      'До 2х лицензий',
+      'Одно рабочее место с полным доступом',
+      'Дополнительное рабочее место рекрутера в подарок - только до конца месяца!',
       'До 5000 резюме в базе',
       'Поддержка через форму ОС',
     ],
     business: [
       'Всё, что в "Начальном" + ИИ инструменты',
-      'От 3х лицензий – подключайте всю команду',
+      'От 2 рабочих мест - подключайте всю команду',
       'Неограниченное количество резюме в базе',
       'Обучение для быстрой адаптации',
       'Доработки под ваши задачи по запросу',
@@ -152,9 +153,9 @@ export function TariffCard({ type }: { type: TariffCardType }) {
         variant={'h4-medium'}
         className={'flex flex-col gap-1 text-(--fill-white) my-10'}
       >
-        <p className={'hidden md:block'}>4500 ₽/мес за 1 лицензию</p>
-        <p className={'hidden md:block'}>*При оплате на год</p>
-        <p className={'md:hidden'}>4500 ₽/мес за 1 рекрутера</p>
+        <p className={'block'}>4500 ₽/мес за 1 рабочее место</p>
+        <p className={'block'}>*При оплате на год</p>
+        {/* <p className={'md:hidden'}>4500 ₽/мес за 1 рабочее место</p> */}
       </Typography>
     ),
   };
@@ -191,7 +192,10 @@ export function TariffCard({ type }: { type: TariffCardType }) {
 
   return (
     <div
-      className={'relative overflow-hidden border border-(--border-light) rounded-xl px-10 py-6 flex flex-col gap-3'}
+      className={cn(
+        'relative overflow-hidden border border-(--border-light) rounded-xl px-10 py-6 flex flex-col gap-3',
+        type === 'free' && 'bg-(--fill-white)',
+      )}
     >
       <div className={'flex flex-col gap-3 h-full'}>
         {label}

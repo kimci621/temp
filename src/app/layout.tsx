@@ -2,7 +2,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer/footer';
 import { ThemeProvider } from '@/lib/context/theme-context';
 import type { Metadata } from 'next';
-import { Manrope } from 'next/font/google';
+import { manrope, montserrat } from '@/assets/fonts';
 import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
 import '@/styles/features.css';
@@ -15,13 +15,6 @@ export const metadata: Metadata = {
     'автоматизация HR, программа для подбора персонала, HR система, рекрутинг сервис, программа для рекрутера, цифровизация HR, CRM для HR',
 };
 
-const manrope = Manrope({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
-  display: 'swap',
-  variable: '--main-font',
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +25,7 @@ export default function RootLayout({
       lang="ru"
       suppressHydrationWarning
     >
-      <body className={`${manrope.variable}`}>
+      <body className={`${manrope.variable} ${montserrat.variable}`}>
         <ThemeProvider>
           <Header />
           <main className="flex-grow">{children}</main>

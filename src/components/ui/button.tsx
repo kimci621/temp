@@ -37,7 +37,7 @@ function Button({
   className,
   variant,
   size,
-  rounded,
+  rounded = 'default',
   asChild = false,
   ...props
 }: React.ComponentProps<'button'> &

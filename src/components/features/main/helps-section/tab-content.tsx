@@ -3,6 +3,7 @@ import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils/cn';
 import Image from 'next/image';
 import { GetDemoDialog } from '../../get-demo-dialog';
+import { CircularProgress } from '@/components/ui/circular-progress';
 
 interface CustomTabContentProps {
   title: string;
@@ -25,6 +26,13 @@ export function HelpsSectionTabContent({
   list,
   tabsJsx,
 }: CustomTabContentProps) {
+  const progressValue = {
+    0: 0,
+    25: 33,
+    50: 66,
+    100: 100,
+  };
+
   return (
     <div className="grid w-full">
       <div className={cn(bgStyle, 'relative overflow-hidden hidden xl:block')}>
@@ -48,6 +56,7 @@ export function HelpsSectionTabContent({
                   variant={'h3-medium'}
                   className={'w-[50px]'}
                 >{`0${index + 1}`}</Typography>
+
                 <Typography
                   variant={'text'}
                   className={'max-w-[546px]'}
@@ -79,13 +88,24 @@ export function HelpsSectionTabContent({
         <Image
           src={imgPath}
           alt={'carousel liquid'}
-          className={'absolute -top-[150px] -right-[350px] z-0 hidden xl:block'}
+          className={'absolute -top-[150px] -right-[350px] z-0 hidden xl:block transition'}
           width={1000}
           height={1000}
         />
+
+        <div className={'absolute top-[24px] right-[36px]'}>
+          <CircularProgress
+            value={progressValue[progress as keyof typeof progressValue]}
+            size={52}
+            strokeWidth={5}
+            labelClassName="text-xl font-bold"
+            className="stroke-[transparent]"
+            progressClassName="stroke-[#1D5D5F]/75"
+          />
+        </div>
       </div>
 
-      <div className={cn(bgStyle, 'block xl:hidden relative overflow-hidden  h-450px p-2 !shadow-none')}>
+      <div className={cn(bgStyle, 'block xl:hidden relative overflow-hidden h-450px p-2 !shadow-none')}>
         {label && (
           <article className="py-2 md:py-3 px-4 rounded-md bg-[#FFFFFF99] mb-2">
             <Typography
@@ -96,6 +116,7 @@ export function HelpsSectionTabContent({
             </Typography>
           </article>
         )}
+
         <ul className={'flex flex-col gap-6 p-2'}>
           {list.map((item, index) => (
             <li

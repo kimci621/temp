@@ -67,7 +67,10 @@ export function MainFeatures() {
     },
   ];
   const [activeTab, setActiveTab] = useState(carouselItems[0].value);
-  const tabImages = carouselItems.map((i) => `/images/main-features-carousel-content/${i.value}.png`);
+  const tabImages = carouselItems.map((i) => ({
+    src: `/images/main-features-carousel-content/${i.value}.png`,
+    alt: i.label,
+  }));
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
@@ -102,7 +105,7 @@ export function MainFeatures() {
         className={'mb-20 text-center'}
       >
         Весь необходимый функционал <br />
-        для работы и еще чуть-чуть больше
+        для работы и даже больше
       </TypographyAnimated>
 
       <ul className={'mb-10'}>
@@ -157,8 +160,8 @@ export function MainFeatures() {
       <div className={'w-full container-inner mt-10 xl:mt-12'}>
         <AnimatePresence mode="wait">
           {tabImages.map(
-            (src, idx) =>
-              `/images/main-features-carousel-content/${activeTab}.png` === src && (
+            (i, idx) =>
+              `/images/main-features-carousel-content/${activeTab}.png` === i.src && (
                 <motion.div
                   key={idx.toString()}
                   initial={{ opacity: 0 }}
@@ -170,13 +173,13 @@ export function MainFeatures() {
                   )}
                 >
                   <Image
-                    src={src}
-                    alt="carousel image"
+                    src={i.src}
+                    alt={i.alt}
                     width={1680}
                     height={960}
                     loading="lazy"
                     quality={100}
-                    className={cn('w-full h-full object-contain rounded-xl mb-16')}
+                    className={cn('w-full h-full object-contain rounded-xl')}
                   />
 
                   {/* Blurred background image with lower z-index */}
@@ -185,7 +188,7 @@ export function MainFeatures() {
                       src={'/images/mountains-without-bg.png'}
                       alt="bg filtered image"
                       width={1678}
-                      height={539}
+                      height={620}
                       loading="lazy"
                       quality={10}
                       className={cn('w-full h-full object-cover blur-[100px]')}
@@ -198,25 +201,25 @@ export function MainFeatures() {
                       src={'/images/mountains-without-bg.png'}
                       alt="bg image"
                       width={1678}
-                      height={539}
+                      height={620}
                       loading="lazy"
                       quality={100}
                       className={cn('w-full h-auto')}
                     />
                   </div>
 
-                  <div className={'w-full flex flex-col items-center pb-20 relative z-10'}>
+                  <div className={'w-full flex flex-col items-center pb-20 relative z-10 h-[410px] xl:h-[620px]'}>
                     <SectionTag
                       emoji={'🤖'}
                       name={'Широкий инструментарий'}
-                      className={'mb-6 mx-auto'}
+                      className={'mx-auto mt-10 md:mt-14 xl:mt-20'}
                     />
 
                     <TypographyAnimated
                       variant={'h3-medium'}
                       animationAmount={0.2}
                       animationDuration={0.75}
-                      className={'mb-6 text-center'}
+                      className={'mt-6 text-center'}
                     >
                       Huntlee – это не просто оптимизация затрат,
                       <br />а инструмент для достижения долгосрочных
@@ -228,13 +231,13 @@ export function MainFeatures() {
                       variant={'text'}
                       animationAmount={0.2}
                       animationDuration={0.75}
-                      className={'mb-10 text-center'}
+                      className={'mt-6 text-center'}
                     >
                       Для успешной работы в системе достаточно ознакомиться с инструкцией
                     </TypographyAnimated>
 
                     <GetDemoDialog
-                      className={'mt-10'}
+                      className={'mt-20'}
                       triggerButton={
                         <Button
                           variant={'white'}

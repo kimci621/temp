@@ -42,6 +42,7 @@
   }
 
   --main-font: "Manrope";
+  --montserrat-font: "Montserrat";
 
   --radius: 0.625rem;
 
@@ -247,4 +248,8 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.montserrat-font {
+  font-family: var(--montserrat-font);
 }

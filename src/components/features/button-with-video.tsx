@@ -35,8 +35,18 @@ export function ButtonWithVideo({
                   height={24}
                   className="hidden xl:inline-block"
                 />
-                <span className="hidden md:inline-block">Запросить демо</span>
-                <span className="inline-block md:hidden">Демо</span>
+                <Typography
+                  className="hidden md:inline-block"
+                  variant={'button'}
+                >
+                  Запросить демо
+                </Typography>
+                <Typography
+                  className="inline-block md:hidden"
+                  variant={'button'}
+                >
+                  Демо
+                </Typography>
               </article>
             </Button>
           ) : (
@@ -48,7 +58,7 @@ export function ButtonWithVideo({
                   width={24}
                   height={24}
                 />
-                <span>Запросить демо</span>
+                <Typography variant={'button'}>Запросить демо</Typography>
               </article>
             </Button>
           )}

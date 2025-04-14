@@ -8,7 +8,10 @@ import TypographyAnimated from '@/components/ui/typography-animated';
 
 export function MainTariffs() {
   return (
-    <section className={'flex flex-col items-center w-full'}>
+    <section
+      id={'tariffs-section'}
+      className={'flex flex-col items-center w-full'}
+    >
       <SectionTag
         emoji={'🤝'}
         name={'Адаптируемся под ваш запрос'}
@@ -33,7 +36,7 @@ export function MainTariffs() {
       <div className={'mt-10 xl:mt-20 w-full'}>
         <div
           className={
-            'relative overflow-hidden border border-(--border-light) rounded-2xl p-6 bg-(--fill-light-bg) shadow-md shadow-gray-50 z-10'
+            'relative overflow-hidden rounded-2xl p-6 bg-[--fill-light-bg] shadow-[0px_18px_80px_0px_rgba(0,0,0,0.06),0px_4.021px_17.869px_0px_rgba(0,0,0,0.04),0px_1.197px_5.32px_0px_rgba(0,0,0,0.02)] z-10'
           }
         >
           <Typography
