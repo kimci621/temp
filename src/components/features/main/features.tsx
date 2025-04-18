@@ -1,12 +1,13 @@
 import { SectionTag } from '@/components/ui/section-tag';
 import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils/cn';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { GetDemoDialog } from '../get-demo-dialog';
 import { Button } from '@/components/ui/button';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ReactSlider, type ReactSliderRef } from '../react-slider';
 
 export function MainFeatures() {
   const carouselItems = [
@@ -71,23 +72,11 @@ export function MainFeatures() {
     src: `/images/main-features-carousel-content/${i.value}.png`,
     alt: i.label,
   }));
+  const slider = useRef<ReactSliderRef | null>(null);
 
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-
-    const button = document.querySelector(`[data-btn-value="${value}"]`) as HTMLElement;
-    const wrapper = document.querySelector('#btn-features-carousel-wrapper') as HTMLElement;
-
-    if (button && wrapper) {
-      const buttonCenter = button.offsetLeft + button.offsetWidth / 2;
-      const wrapperCenter = wrapper.offsetLeft + wrapper.offsetWidth / 2;
-      const scrollLeft = buttonCenter - wrapperCenter;
-
-      wrapper.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth',
-      });
-    }
+  const handleTabChange = (idx: number) => {
+    slider?.current?.goToIndex(idx);
+    // setActiveTab(value);
   };
 
   return (
@@ -115,7 +104,7 @@ export function MainFeatures() {
             key={idx.toString()}
             className="inline-block mx-1 cursor-pointer"
             onClick={() => {
-              handleTabChange(c.value);
+              handleTabChange(idx);
             }}
           >
             <div
@@ -128,34 +117,40 @@ export function MainFeatures() {
         ))}
       </ul>
 
-      <div
-        id={'btn-features-carousel-wrapper'}
-        className={'flex flex-row flex-nowrap gap-2 w-[100vw] px-1 hidden-x-scrollbar'}
+      <ReactSlider
+        ref={slider}
+        config={{
+          infinite: true,
+          snap: true,
+          onSlideChange: (currentSlide) => {
+            setActiveTab(carouselItems[currentSlide].value);
+          },
+        }}
       >
         {carouselItems.map((c, idx) => (
-          // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
           <div
-            key={idx.toString()}
-            onClick={() => handleTabChange(c.value)}
-            className={cn(
-              activeTab !== c.value ? 'bg-(--fill-dark-fill)' : 'bg-(--active-dark)',
-              'text-center px-6 py-2 rounded-lg cursor-pointer transition',
-            )}
-            data-btn-value={c.value}
-            style={{
-              width: `${c.maxWidth}px`,
-              minWidth: `${c.maxWidth}px`,
-            }}
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            key={idx}
+            className={'flex items-center justify-center w-[80vw] md:w-[320px] xl:w-[400px] shrink-0 px-2'}
           >
-            <Typography
-              variant={'button'}
-              className={'w-full break-words'}
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+            <div
+              onClick={() => handleTabChange(idx)}
+              className={cn(
+                activeTab !== c.value ? 'bg-(--fill-dark-fill)' : 'bg-(--active-dark)',
+                'text-center px-6 py-2 rounded-lg cursor-pointer',
+              )}
             >
-              {c.label}
-            </Typography>
+              <Typography
+                variant={'button'}
+                className={'w-full break-words'}
+              >
+                {c.label}
+              </Typography>
+            </div>
           </div>
         ))}
-      </div>
+      </ReactSlider>
 
       <div className={'w-full container-inner mt-10 xl:mt-12'}>
         <AnimatePresence mode="wait">
@@ -177,7 +172,7 @@ export function MainFeatures() {
                     alt={i.alt}
                     width={1680}
                     height={960}
-                    loading="lazy"
+                    priority={true}
                     quality={100}
                     className={cn('w-full h-full object-contain rounded-xl')}
                   />
@@ -240,7 +235,7 @@ export function MainFeatures() {
                       className={'mt-20'}
                       triggerButton={
                         <Button
-                          variant={'white'}
+                          variant={'secondary'}
                           className={'w-fit'}
                           asChild
                         >

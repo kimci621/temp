@@ -6,6 +6,7 @@ import { manrope, montserrat } from '@/assets/fonts';
 import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
 import '@/styles/features.css';
+import 'lenis/dist/lenis.css';
 
 export const metadata: Metadata = {
   title: 'Автоматизация HR и подбора персонала — Huntlee',
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${montserrat.variable}`}>
         <ThemeProvider>
           <Header />
+
           <main className="flex-grow">{children}</main>
+
           <Footer />
         </ThemeProvider>
       </body>

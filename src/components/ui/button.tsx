@@ -9,12 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-(--active-green) hover:bg-(--active-green)/80 text-(--active-green-ultra-light)',
+        default: 'bg-(--active-green) hover:bg-(--active-green-light) text-(--active-green-ultra-light)',
         secondary:
-          'bg-(--active-green-ultra-light) hover:bg-(--active-green-ultra-light)/60 border border-(--border-green-light) text-(--active-dark)',
+          'bg-(--active-green-ultra-light) border border-(--border-green-light) text-(--active-dark) hover:text-(--active-green)',
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
         white: 'bg-(--fill-white) hover:bg-(--fill-white)/80 text-(--active-green-ultra-light)',
+        tab: 'bg-transparent text-(--text-light) hover:text-(--active-dark)',
       },
       size: {
         default: 'h-[40px] xl:h-[48px] px-4 py-2 xl:px-6 xl:py-3',

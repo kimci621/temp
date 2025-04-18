@@ -12,11 +12,16 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      }
     }
   },
   "files": {
-    "include": ["./src/**"]
+    "include": [
+      "./src/**"
+    ]
   },
   "javascript": {
     "formatter": {

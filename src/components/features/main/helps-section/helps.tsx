@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
 import { useState } from 'react';
 import { SectionTag } from '@/components/ui/section-tag';
-import { HelpsSectionTabContent } from './tab-content';
+import { MainHelpsSectionTabContent } from './tab-content';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { GetDemoDialog } from '../../get-demo-dialog';
 import TypographyAnimated from '@/components/ui/typography-animated';
@@ -58,7 +58,7 @@ export function MainHelps() {
         'Сократим срок закрытия вакансий. \n' +
           'Больше не придется терять деньги из-за долгих месяцев поиска сотрудников.',
         'Непонятно, как и насколько хорошо работают рекрутеры? \n' +
-          'Автоматизация наведет порядок и сделает процесс прозрачным для вас.',
+          'Автоматизация сделает процесс прозрачным для вас.',
         'Встроенный ИИ возьмет часть задач на себя, повышая продуктивность команды.',
       ],
     },
@@ -111,7 +111,7 @@ export function MainHelps() {
             value={tabContent.value}
             key={tabContent.value}
           >
-            <HelpsSectionTabContent
+            <MainHelpsSectionTabContent
               title={tabContent.title}
               progress={tabContent.progress}
               imgPath={tabContent.imgPath}
@@ -160,7 +160,7 @@ export function MainHelps() {
       <ScrollArea className="xl:hidden w-full ">
         <div className={'grid gap-2 grid-flow-col auto-cols-[270px] md:auto-cols-[300px]'}>
           {tabsContentItems.map((tabContent) => (
-            <HelpsSectionTabContent
+            <MainHelpsSectionTabContent
               key={tabContent.value}
               title={tabContent.title}
               progress={tabContent.progress}
@@ -179,7 +179,7 @@ export function MainHelps() {
         className={'xl:hidden mt-10'}
         triggerButton={
           <Button
-            variant={'white'}
+            variant={'secondary'}
             className={'w-fit'}
             asChild
           >

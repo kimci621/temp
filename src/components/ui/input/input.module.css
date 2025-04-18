@@ -1,26 +1,28 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem; /* 1.5 */
+  gap: 0.375rem;
 }
 
-.labelDark {
-  color: var(--text-dark);
-}
-
-.labelLight {
+.label {
   color: var(--text-light);
+}
+
+footer .label {
+  color: var(--text-dark);
 }
 
 .input {
   display: flex;
-  height: 52px;
+  height: 48px;
   width: 100%;
-  border-radius: 0.75rem; /* rounded-xl */
+  border-radius: 0.75rem;
+  /* rounded-xl */
   border: 1px solid var(--border-light);
   background-color: var(--fill-white);
-  padding: 0.75rem 1.5rem;
-  font-size: 1.125rem; /* text-lg */
+  padding: 12px 24px;
+  font-size: 16px;
+  /* text-lg */
   color: var(--text-light);
   font-weight: 600;
   outline: none;
@@ -45,6 +47,7 @@
 }
 
 .errorText {
-  font-size: 0.875rem;
-  color: #f87171; /* red-400 */
+  font-size: 12px;
+  color: #f87171;
+  /* red-400 */
 }

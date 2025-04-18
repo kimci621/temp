@@ -83,13 +83,29 @@ export function TariffCard({ type }: { type: TariffCardType }) {
     business: 'bg-(--fill-white)',
   };
 
+  const tagBgStyles = {
+    free: 'bg-(--active-green-ultra-light) border-none backdrop-blur-[25px] !text-(--text-light)',
+    business: 'bg-(--fill-white)/25 border-none backdrop-blur-[25px]',
+  };
+
+  const tagFontStyles = {
+    free: 'text-(--text-light)',
+    business: 'text-(--fill-white)',
+  };
+
   const label = (
     <SectionTag
       isLight
-      className={'w-fit'}
+      className={cn('w-fit', tagBgStyles[type])}
       emoji={labelEmoji[type]}
-      name={labelText[type]}
-    />
+    >
+      <Typography
+        variant={'text'}
+        className={tagFontStyles[type]}
+      >
+        {labelText[type]}
+      </Typography>
+    </SectionTag>
   );
 
   const title = (
@@ -170,6 +186,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
           variant={'secondary'}
           size={'sm'}
           rounded={'default'}
+          className="w-full"
         >
           <Typography variant={'button'}>{buttonText[type]}</Typography>
         </Button>
@@ -182,6 +199,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
             variant={'secondary'}
             size={'sm'}
             rounded={'default'}
+            className="w-full"
           >
             <Typography variant={'button'}>{buttonText[type]}</Typography>
           </Button>

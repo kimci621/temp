@@ -58,7 +58,7 @@ const TypographyAnimated: React.FC<TypographyAnimatedProps> = ({
     // Функция для определения размера экрана
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width >= 1200) {
+      if (width >= 1280) {
         setScreenSize('desktop');
       } else if (width >= 768) {
         setScreenSize('tablet');

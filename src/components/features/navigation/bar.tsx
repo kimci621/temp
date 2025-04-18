@@ -31,8 +31,8 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
               href={item.href}
             >
               <Button
-                variant={item.isActive ? 'white' : 'ghost'}
-                className={'text-(--text-light)'}
+                variant={'tab'}
+                className={item.isActive ? 'bg-(--fill-white)' : ''}
               >
                 <Typography variant={'button'}>{item.label}</Typography>
               </Button>

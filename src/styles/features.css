@@ -6,6 +6,7 @@
       #3f3963 82.76%,
       #30284e 140.73%);
   box-shadow: 0 8px 100px 0 rgba(92, 83, 127, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .bg-carousel-liquid-2 {
@@ -16,6 +17,7 @@
       #2d799c 56.65%,
       #7666e4 107.84%);
   box-shadow: 0 8px 100px 0 rgba(57, 131, 165, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .bg-carousel-liquid-3 {
@@ -26,6 +28,7 @@
       #f16477 -24.22%,
       #4ea8c0 106.93%);
   box-shadow: 0 8px 100px 0 rgba(148, 139, 161, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .bg-carousel-liquid-4 {
@@ -36,9 +39,35 @@
       #dd9747 62.53%,
       #d16404 109.31%);
   box-shadow: 0 8px 100px 0 rgba(210, 163, 104, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .backdrop-blur-250px {
   opacity: 0.75;
   backdrop-filter: blur(25px);
+}
+
+.rustore-bg-circle {
+  border-radius: 608px;
+  background: radial-gradient(50% 50% at 50% 50%, #156350 0%, #131313 100%);
+  filter: blur(150px);
+  position: absolute;
+  width: 608px;
+  height: 608px;
+
+  @media screen and (max-width: 768px) {
+    transform: translateX(50%);
+    right: 50%;
+    top: 200px;
+  }
+
+  @media screen and (min-width: 768px) {
+    right: -304px;
+    bottom: -580px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    right: -70px;
+    bottom: -608px;
+  }
 }

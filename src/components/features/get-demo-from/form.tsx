@@ -9,7 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox/checkbox';
 import Link from 'next/link';
 import Typography from '@/components/ui/typography'; // Импорт схемы
 
-export function GetDemoForm() {
+export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
   const {
     register,
     handleSubmit,
@@ -68,6 +68,7 @@ export function GetDemoForm() {
         id={'agreeToNews'}
         label={'Разрешаю отправлять мне новости о продукте'}
         defaultChecked={true}
+        textClassName={isInFooter ? 'text-(--text-dark)' : ''}
       />
 
       {/*{errors.agreeToNews && <p>{errors.agreeToNews.message}</p>}*/}

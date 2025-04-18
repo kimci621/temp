@@ -15,13 +15,14 @@ export function ModalGetDemoBackground({ className = '' }: ModalGetDemoBackgroun
           height={1540}
           style={{
             objectFit: 'fill',
-            filter: 'blur(30px)',
+            filter: 'blur(50px)',
             zIndex: '-1',
             width: '829px',
             height: '636px',
             position: 'absolute',
             top: '0',
             left: '0',
+            opacity: '0.8',
           }}
         />
         <Image

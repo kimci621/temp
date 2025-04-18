@@ -3,17 +3,18 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils/cn';
 
 export function MainRustore() {
   return (
     <div
       className={
-        'grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 border border-(--border-dark) rounded-[16px] bg-(--fill-dark-fill) p-6 '
+        'relative grid grid-cols-1 md:grid-cols-[1fr_auto] border border-(--border-dark) rounded-[16px] bg-(--fill-dark-fill) p-6 xl:px-10'
       }
     >
-      <article className={'flex flex-col justify-between items-center md:items-start'}>
-        <div className={'flex flex-col gap-6 mb-10'}>
-          <div className={'flex items-center gap-4'}>
+      <article className={'z-2 w-full flex flex-col justify-between items-center md:items-start'}>
+        <div className={'flex flex-col mb-10'}>
+          <div className={'flex items-center gap-4 mb-6'}>
             <Image
               src={'/images/rustore-icon.png'}
               alt={'rustore'}
@@ -31,20 +32,20 @@ export function MainRustore() {
 
           <Typography
             variant={'text'}
-            className={'text-(--text-dark)'}
+            className={'text-(--text-dark) w-full md:w-[400px] xl:w-[610px]'}
           >
             Просматривайте отклики, общайтесь с кандидатами и следите за расписанием собеседований из любого места и в
             любое время
           </Typography>
         </div>
 
-        <div className={'flex items-center gap-4'}>
+        <div className={'flex items-center gap-4 mb-3 md:mb-0'}>
           <Link
             href={'https://www.rustore.ru/catalog/app/com.mycompany.huntlee'}
             target={'_blank'}
           >
             <Button
-              variant={'white'}
+              variant={'secondary'}
               className={'w-fit'}
               asChild
             >
@@ -62,7 +63,7 @@ export function MainRustore() {
               <Tooltip>
                 <TooltipTrigger>
                   <Button
-                    variant={'white'}
+                    variant={'secondary'}
                     size={'icon'}
                     asChild
                   >
@@ -93,17 +94,24 @@ export function MainRustore() {
         </div>
       </article>
 
-      <div className={'relative w-full md:w-[271px] h-[368px] md:h-[260px] flex items-center justify-center'}>
-        <Image
-          src={'/images/iphone-rustore.png'}
-          alt={'rustore'}
-          width={700}
-          height={1000}
-          quality={100}
-          className={
-            'md:absolute md:top-1/2 xl:top-[calc(107px)] translate-y-7 md:-translate-y-1/2  md:left-0 object-contain w-[271px] h-[368px]  '
-          }
-        />
+      <Image
+        src={'/images/iphone-rustore.png'}
+        alt={'rustore'}
+        width={700}
+        height={1000}
+        quality={100}
+        className={cn(
+          'md:absolute object-contain z-2 mx-auto md:mx-0',
+          'md:top-1/2 xl:top-[calc(82px)] translate-y-6 md:-translate-y-1/2',
+          'md:right-10 xl:right-20',
+          'w-[275px] md:w-[220px] xl:w-[275px] h-[365px] md:h-[300px] xl:h-[365px]',
+        )}
+      />
+
+      <div className={'absolute right-0 top-0 w-full h-full rounded-[16px] overflow-hidden border-none'}>
+        <div className={'relative'}>
+          <div className={'rustore-bg-circle'} />
+        </div>
       </div>
     </div>
   );

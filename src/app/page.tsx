@@ -17,7 +17,7 @@ export default function Home() {
           <MainPresentation />
         </div>
 
-        <div className={'bg-(--fill-dark-bg) py-[80px] xl:py-[200px] flex flex-col items-center'}>
+        <div className={'bg-(--fill-dark-bg) py-[80px] xl:py-[200px] flex flex-col items-center is-dark-bg'}>
           <div className={'container-inner'}>
             <MainHelps />
           </div>
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={'mb-[140px] xl:mb-[200px]'}>
+        <div className={'mb-[40px] xl:mb-[80px]'}>
           <MainAi />
         </div>
 

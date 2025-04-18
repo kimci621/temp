@@ -7,14 +7,16 @@ import Drawer from '@/components/ui/drawer';
 import { HeaderLogo } from '@/components/features/header/logo';
 import { NavigationBar } from '@/components/features/navigation/bar';
 import { ButtonWithVideo } from '@/components/features/button-with-video';
+import { useMediaQuery } from '@/lib/hooks/use-media-query';
 
 export function HeaderSidebar() {
   const [isShowDrawer, setIsShowDrawer] = useState(false);
+  const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   return (
     <div>
       <div className="flex items-center gap-2.5">
-        <ButtonWithVideo />
+        <ButtonWithVideo alwaysShowVideo={isDesktop} />
 
         <Button
           variant="secondary"

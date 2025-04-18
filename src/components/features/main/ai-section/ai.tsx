@@ -18,7 +18,7 @@ export function MainAi() {
 
       <TypographyAnimated
         variant={'h1-medium'}
-        className={'text-center text-(--text-light) mb-20 md:mb-10'}
+        className={'text-center text-(--text-light) mb-5'}
         animationAmount={0.2}
         animationDuration={0.75}
       >

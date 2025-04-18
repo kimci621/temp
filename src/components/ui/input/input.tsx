@@ -29,7 +29,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, type, label
         <label htmlFor={props.id}>
           <Typography
             variant="caption"
-            className={styles.labelLight}
+            className={styles.label}
           >
             {label}
           </Typography>
