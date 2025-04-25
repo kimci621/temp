@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { SectionTag } from '@/components/ui/section-tag';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import RevealFromDirection from '../animation/reveal-from-direction';
+import { motion } from 'framer-motion';
 
 export function MainPresentation() {
   const carouselItems = [
@@ -26,15 +27,22 @@ export function MainPresentation() {
       text: 'Идеально для малого и среднего бизнеса',
     },
   ];
-  const plugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+  const plugin = React.useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   return (
-    <div className={'flex flex-col justify-center items-center overflow-hidden relative'}>
-      <RevealFromDirection
-        direction={'top'}
-        delay={0.5}
-        duration={0.5}
-        isOnce={true}
+    <div className={'w-full flex flex-col justify-center items-center relative'}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        whileInView="visible"
+        transition={{
+          duration: 1,
+          delay: 0.5,
+          ease: 'easeOut',
+        }}
+        viewport={{
+          once: true,
+        }}
       >
         <Carousel plugins={[plugin.current]}>
           <CarouselContent className={'w-[306px] xl:w-[400px]'}>
@@ -52,7 +60,7 @@ export function MainPresentation() {
             ))}
           </CarouselContent>
         </Carousel>
-      </RevealFromDirection>
+      </motion.div>
 
       <div className={'flex flex-col gap-10 max-w-[660px] mt-6 xl:mt-10'}>
         <TypographyAnimated
@@ -90,10 +98,7 @@ export function MainPresentation() {
             variant={'secondary'}
             className={'!pl-0.5'}
           >
-            <Typography
-              variant={'button'}
-              className={'text-(--active-dark)'}
-            >
+            <Typography variant={'button'}>
               <article className={'flex items-center gap-3'}>
                 <div className={'tg-bg-color rounded-lg w-8 xl:w-10 h-8 xl:h-10 flex items-center justify-center'}>
                   <Image
@@ -111,7 +116,9 @@ export function MainPresentation() {
         </RevealFromDirection>
       </Link>
 
-      <div className={'mt-20 xl:mt-32 w-[calc(100%-30px)] md:w-[calc(100%-70px)] xl:w-[calc(100%-520px)]'}>
+      <div
+        className={'container-inner mt-20 xl:mt-32 w-[calc(100%-30px)] md:w-[calc(100%-70px)] xl:w-[calc(100%-520px)]'}
+      >
         <RevealFromDirection
           direction={'bottom'}
           delay={0.1}
@@ -119,7 +126,7 @@ export function MainPresentation() {
           isOnce={true}
           slideDistance={200}
         >
-          <div className={'bg-(--fill-white) px-2 pt-2 rounded-tl-xl rounded-tr-xl'}>
+          <div className={'bg-(--fill-white) px-2 pt-2 rounded-tl-2xl rounded-tr-2xl'}>
             <LazyVideo
               src="/videos/demo-video.mp4"
               type="video/mp4"

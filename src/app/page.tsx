@@ -8,8 +8,25 @@ import { MainAi } from '@/components/features/main/ai-section/ai';
 import { MainTariffs } from '@/components/features/main/tariffs';
 import { MainNewLevel } from '@/components/features/main/new-level';
 import { MainPartners } from '@/components/features/main/partners';
+import Lenis from 'lenis';
+import { useEffect } from 'react';
 
 export default function Home() {
+  if (typeof window !== 'undefined') {
+    const lenis = new Lenis({
+      autoRaf: true,
+      lerp: 0.1,
+      duration: 1.4,
+      prevent: (node) => node.hasAttribute('data-lenis-prevent'),
+    });
+
+    useEffect(() => {
+      return () => {
+        lenis.destroy();
+      };
+    });
+  }
+
   return (
     <div className="w-full">
       <div className="container-full mx-auto">

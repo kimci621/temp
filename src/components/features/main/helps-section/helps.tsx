@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { SectionTag } from '@/components/ui/section-tag';
 import { MainHelpsSectionTabContent } from './tab-content';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
-import { GetDemoDialog } from '../../get-demo-dialog';
 import TypographyAnimated from '@/components/ui/typography-animated';
+import dynamic from 'next/dynamic';
+
+const DynamicDemoDialog = dynamic(() => import('../../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
 export function MainHelps() {
   const tabItems = [
@@ -20,7 +22,7 @@ export function MainHelps() {
     {
       title: 'Решаем задачи каждого участника процесса подбора',
       progress: 0,
-      imgPath: '/images/carousel-liquid-1.png',
+      imgPath: '/images/optimized/tabs/carousel-liquid-1.webp',
       bgStyle: 'bg-carousel-liquid-1',
       link: '/',
       value: 'recruiter',
@@ -34,7 +36,7 @@ export function MainHelps() {
     {
       title: 'Решаем задачи каждого участника процесса подбора',
       progress: 25,
-      imgPath: '/images/carousel-liquid-2.png',
+      imgPath: '/images/optimized/tabs/carousel-liquid-2.webp',
       bgStyle: 'bg-carousel-liquid-2',
       link: '/',
       value: 'hiringManager',
@@ -49,7 +51,7 @@ export function MainHelps() {
     {
       title: 'Решаем задачи каждого участника процесса подбора',
       progress: 50,
-      imgPath: '/images/carousel-liquid-3.png',
+      imgPath: '/images/optimized/tabs/carousel-liquid-3.webp',
       bgStyle: 'bg-carousel-liquid-3',
       link: '/',
       value: 'owner',
@@ -65,7 +67,7 @@ export function MainHelps() {
     {
       title: 'Решаем задачи каждого участника процесса подбора',
       progress: 100,
-      imgPath: '/images/carousel-liquid-4.png',
+      imgPath: '/images/optimized/tabs/carousel-liquid-4.webp',
       bgStyle: 'bg-carousel-liquid-4',
       link: '/',
       value: 'client',
@@ -106,48 +108,53 @@ export function MainHelps() {
         onValueChange={(value) => handleTabChange(value)}
         className={'w-full hidden xl:block'}
       >
-        {tabsContentItems.map((tabContent) => (
-          <TabsContent
-            value={tabContent.value}
-            key={tabContent.value}
-          >
-            <MainHelpsSectionTabContent
-              title={tabContent.title}
-              progress={tabContent.progress}
-              imgPath={tabContent.imgPath}
-              bgStyle={tabContent.bgStyle}
-              link={tabContent.link}
-              list={tabContent.list}
-              tabsJsx={
-                <TabsList className={'bg-[#FFFFFF99] rounded-2xl p-1 h-fit'}>
-                  {tabItems.map((tab) => (
-                    <TabsTrigger
-                      key={tab.name}
-                      value={tab.name}
-                      className={'border-none !shadow-none p-0 cursor-pointer'}
-                      onMouseEnter={() => {
-                        handleTabChange(tab.name);
-                      }}
+        <div className={'relative'}>
+          <div className={'z-2 absolute top-[208px] left-10'}>
+            <TabsList className={'bg-[#FFFFFF99] rounded-2xl p-1 h-fit'}>
+              {tabItems.map((tab) => (
+                <TabsTrigger
+                  key={tab.name}
+                  value={tab.name}
+                  className={'border-none !shadow-none p-0 cursor-pointer'}
+                  onMouseEnter={() => {
+                    handleTabChange(tab.name);
+                  }}
+                >
+                  <Button
+                    variant={activeTab === tab.name ? 'white' : 'ghost'}
+                    rounded={'default'}
+                    asChild
+                  >
+                    <Typography
+                      variant={'button'}
+                      className={'text-(--text-light)'}
                     >
-                      <Button
-                        variant={activeTab === tab.name ? 'white' : 'ghost'}
-                        rounded={'default'}
-                        asChild
-                      >
-                        <Typography
-                          variant={'button'}
-                          className={'text-(--text-light)'}
-                        >
-                          {tab.label}
-                        </Typography>
-                      </Button>
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              }
-            />
-          </TabsContent>
-        ))}
+                      {tab.label}
+                    </Typography>
+                  </Button>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+
+          <div className={'relative z-1'}>
+            {tabsContentItems.map((tabContent) => (
+              <TabsContent
+                value={tabContent.value}
+                key={tabContent.value}
+              >
+                <MainHelpsSectionTabContent
+                  title={tabContent.title}
+                  progress={tabContent.progress}
+                  imgPath={tabContent.imgPath}
+                  bgStyle={tabContent.bgStyle}
+                  link={tabContent.link}
+                  list={tabContent.list}
+                />
+              </TabsContent>
+            ))}
+          </div>
+        </div>
       </Tabs>
 
       <Typography
@@ -175,7 +182,7 @@ export function MainHelps() {
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
-      <GetDemoDialog
+      <DynamicDemoDialog
         className={'xl:hidden mt-10'}
         triggerButton={
           <Button

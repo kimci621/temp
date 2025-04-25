@@ -2,7 +2,7 @@
 
 import { TypographyClasses } from '@/lib/consts/typography';
 import type React from 'react';
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState, useRef } from 'react';
 
 // Типы для различных вариантов текста
 type TypographyVariant =
@@ -26,6 +26,7 @@ interface TypographyProps {
 
 const Typography: React.FC<TypographyProps> = ({ variant, children, className = '' }) => {
   const [screenSize, setScreenSize] = useState<ScreenSize>('desktop');
+  const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     // Функция для определения размера экрана
@@ -40,17 +41,20 @@ const Typography: React.FC<TypographyProps> = ({ variant, children, className = 
       }
     };
 
-    // Вызываем функцию сразу при монтировании
+    // Дебаунсер для resize
+    const debouncedResize = () => {
+      if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+      resizeTimeout.current = setTimeout(() => {
+        handleResize();
+      }, 150);
+    };
+
     handleResize();
-
-    // Добавляем слушатель изменения размера окна
-    // TODO use debouncer
-    window.addEventListener('resize', handleResize, {
-      passive: true,
-    });
-
-    // Очищаем слушатель при размонтировании
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', debouncedResize, { passive: true });
+    return () => {
+      window.removeEventListener('resize', debouncedResize);
+      if (resizeTimeout.current) clearTimeout(resizeTimeout.current);
+    };
   }, []);
 
   // Определяем классы в зависимости от размера экрана и варианта типографики

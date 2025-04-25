@@ -20,13 +20,13 @@ export function ButtonWithVideo({
 
   return (
     <div
-      className={cn('group flex flex-col gap-2', className)}
+      className={cn('relative group flex flex-col gap-2', className)}
       {...props}
     >
       <Dialog>
         <DialogTrigger asChild>
           {!alwaysShowVideo ? (
-            <Button>
+            <Button className={'z-1'}>
               <article className="flex items-center gap-3">
                 <Image
                   src="/monitor-play.svg"
@@ -50,7 +50,7 @@ export function ButtonWithVideo({
               </article>
             </Button>
           ) : (
-            <Button className={'w-[221px]'}>
+            <Button>
               <article className="flex items-center gap-3">
                 <Image
                   src="/monitor-play.svg"
@@ -64,8 +64,8 @@ export function ButtonWithVideo({
           )}
         </DialogTrigger>
 
-        <DialogContent>
-          <div className={'overflow-x-hidden relative xl:-mr-[27px]'}>
+        <DialogContent className={'xl:pr-0'}>
+          <div className={'w-full overflow-x-hidden hidden-y-scrollbar relative xl:-mr-[27px]'}>
             <div>
               <DialogTitle className={'opacity-0'}>_</DialogTitle>
 
@@ -78,7 +78,7 @@ export function ButtonWithVideo({
 
               <Typography
                 variant={'h4-medium'}
-                className={'text-(--text-light) mb-10'}
+                className={'text-(--text-light) mb-10 max-w-[669px]'}
               >
                 Запишитесь на персональную демонстрацию и узнайте, как Huntlee поможет вашему бизнесу.
               </Typography>
@@ -113,7 +113,7 @@ export function ButtonWithVideo({
 
       <div
         className={cn(
-          'absolute top-[100%] transition-[height,opacity] duration-200 overflow-hidden h-0 group-hover:h-fit opacity-0 group-hover:opacity-100 bg-(--fill-white) rounded-lg p-1',
+          'absolute top-[calc(100%+4px)] transition-[height,opacity] duration-200 overflow-hidden h-0 group-hover:h-fit opacity-0 group-hover:opacity-100 bg-(--fill-white) rounded-[12px]',
           alwaysShowVideoStyles,
         )}
       >
@@ -124,9 +124,15 @@ export function ButtonWithVideo({
           height="100%"
           autoPlay={true}
           loop={true}
-          className={cn('w-full rounded-lg border border-(--fill-white)')}
+          className={cn('w-full rounded-[10px] border border-(--fill-white)')}
         />
       </div>
+
+      <div
+        className={
+          'hidden xl:block absolute -z-1 -top-[4px] -left-[4px] bg-(--fill-white) w-[calc(100%+8px)] h-[202px] rounded-[12px] border border-(--border-light)'
+        }
+      />
     </div>
   );
 }

@@ -65,7 +65,7 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
             ))}
           </div>
 
-          <div>
+          <div className={'pb-[130px]'}>
             <Link
               href="https://huntlee.ru/login"
               className={'w-full'}
@@ -78,11 +78,8 @@ export const NavigationBar = ({ orientation, className = '' }: { orientation: 'x
               </Button>
             </Link>
 
-            <div className={'pb-[130px] mt-10 mb-4'}>
-              <ButtonWithVideo
-                alwaysShowVideo={true}
-                className={'w-[221px]'}
-              />
+            <div className={'relative mt-10 mb-4'}>
+              <ButtonWithVideo alwaysShowVideo={true} />
             </div>
           </div>
         </nav>

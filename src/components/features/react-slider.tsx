@@ -55,7 +55,7 @@ export const ReactSlider = forwardRef(({ children, config }: SliderProps, ref) =
 
   return (
     <div
-      className="py-sm pb-xl flex w-screen overflow-x-hidden px-[calc(50%-40vw)] focus:outline-none md:px-[calc(50%-15vw)]"
+      className="py-sm pb-xl flex w-screen overflow-x-hidden px-[calc(50%-45vw)] sm:px-[calc(50%-42vw)] md:px-[calc(50%-15vw)] focus:outline-none"
       ref={smooothy.ref}
     >
       {/*  Those classes need for children: w-[80vw] shrink-0 flex items-center justify-center */}

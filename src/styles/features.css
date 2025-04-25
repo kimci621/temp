@@ -71,3 +71,29 @@
     bottom: -608px;
   }
 }
+
+.GridCard1 {
+  grid-area: GridCard1;
+}
+
+.GridCard2 {
+  grid-area: GridCard2;
+}
+
+.GridCard3 {
+  grid-area: GridCard3;
+}
+
+.GridCard4 {
+  grid-area: GridCard4;
+}
+
+.GridCard5 {
+  grid-area: GridCard5;
+}
+
+.GridsBottomGradientElement {
+  border-radius: 16px;
+  border: 1px solid #2B8D63;
+  background: linear-gradient(90deg, #309E66 0%, #267E61 46.97%, #1D5D5F 70.56%, #113824 100%);
+}

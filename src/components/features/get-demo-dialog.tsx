@@ -24,8 +24,8 @@ export function GetDemoDialog({
           <div>{triggerButton}</div>
         </DialogTrigger>
 
-        <DialogContent>
-          <div className={'overflow-x-hidden relative xl:-mr-[27px]'}>
+        <DialogContent className={'xl:pr-0'}>
+          <div className={'w-full overflow-x-hidden hidden-y-scrollbar relative xl:-mr-[27px]'}>
             <div>
               <DialogTitle className={'opacity-0'}>_</DialogTitle>
 
@@ -38,7 +38,7 @@ export function GetDemoDialog({
 
               <Typography
                 variant={'h4-medium'}
-                className={'text-(--text-light) mb-10'}
+                className={'text-(--text-light) mb-10 max-w-[669px]'}
               >
                 Запишитесь на персональную демонстрацию и узнайте, как Huntlee поможет вашему бизнесу.
               </Typography>

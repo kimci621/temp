@@ -3,11 +3,13 @@ import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils/cn';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { GetDemoDialog } from '../get-demo-dialog';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactSlider, type ReactSliderRef } from '../react-slider';
+
+const DynamicDemoDialog = dynamic(() => import('../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
 export function MainFeatures() {
   const carouselItems = [
@@ -231,7 +233,7 @@ export function MainFeatures() {
                       Для успешной работы в системе достаточно ознакомиться с инструкцией
                     </TypographyAnimated>
 
-                    <GetDemoDialog
+                    <DynamicDemoDialog
                       className={'mt-20'}
                       triggerButton={
                         <Button

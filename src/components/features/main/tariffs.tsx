@@ -1,10 +1,12 @@
 import { SectionTag } from '@/components/ui/section-tag';
 import { TariffCard } from '@/components/ui/tariff-card';
 import Typography from '@/components/ui/typography';
-import { GetDemoDialog } from '../get-demo-dialog';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import TypographyAnimated from '@/components/ui/typography-animated';
+import dynamic from 'next/dynamic';
+
+const DynamicDemoDialog = dynamic(() => import('../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
 export function MainTariffs() {
   return (
@@ -55,7 +57,7 @@ export function MainTariffs() {
             — от фрилансеров до крупных корпораций.
           </Typography>
 
-          <GetDemoDialog
+          <DynamicDemoDialog
             triggerButton={
               <Button>
                 <Typography variant={'button'}>Подробнее о тарифах</Typography>

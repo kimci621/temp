@@ -2,8 +2,9 @@ import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils/cn';
 import type { Review } from '@/types/review';
 import Image from 'next/image';
+import React from 'react';
 
-export function MainReviewCard({
+export const MainReviewCard = React.memo(function MainReviewCard({
   review,
   className,
   isActive = false,
@@ -54,4 +55,4 @@ export function MainReviewCard({
       </div>
     </div>
   );
-}
+});

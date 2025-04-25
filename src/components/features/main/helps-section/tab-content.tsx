@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils/cn';
 import Image from 'next/image';
-import { GetDemoDialog } from '../../get-demo-dialog';
 import { CircularProgress } from '@/components/ui/circular-progress';
 import { AnimatePresence, motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const DynamicDemoDialog = dynamic(() => import('../../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
 interface CustomTabContentProps {
   title: string;
@@ -14,18 +16,9 @@ interface CustomTabContentProps {
   bgStyle: string;
   link: string;
   list: string[];
-  tabsJsx?: React.ReactNode;
 }
 
-export function MainHelpsSectionTabContent({
-  title,
-  progress,
-  imgPath,
-  bgStyle,
-  label,
-  list,
-  tabsJsx,
-}: CustomTabContentProps) {
+export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, label, list }: CustomTabContentProps) {
   const progressValue = {
     0: 1,
     25: 33,
@@ -44,7 +37,7 @@ export function MainHelpsSectionTabContent({
             {title}
           </Typography>
 
-          {tabsJsx && tabsJsx}
+          <div className={'w-[678px] h-[56px]'} />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -77,7 +70,7 @@ export function MainHelpsSectionTabContent({
             </motion.div>
           </AnimatePresence>
 
-          <GetDemoDialog
+          <DynamicDemoDialog
             triggerButton={
               <Button
                 variant={'secondary'}

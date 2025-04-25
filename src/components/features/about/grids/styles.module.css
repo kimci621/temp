@@ -1,0 +1,32 @@
+.GridCardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas:
+    "GridCard1"
+    "GridCard2"
+    "GridCard3"
+    "GridCard4"
+    "GridCard5";
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .GridCardsWrapper {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "GridCard1 GridCard1 GridCard2 GridCard2 GridCard3 GridCard3"
+      "GridCard4 GridCard4 GridCard4 GridCard5 GridCard5 GridCard5";
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .GridCardsWrapper {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas:
+      "GridCard1 GridCard2 GridCard3 GridCard4 GridCard5";
+  }
+}

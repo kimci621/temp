@@ -4,7 +4,10 @@ import { SectionTag } from './section-tag';
 import Typography from './typography';
 import Image from 'next/image';
 import Link from 'next/link';
-import { GetDemoDialog } from '../features/get-demo-dialog';
+
+import dynamic from 'next/dynamic';
+
+const DynamicDemoDialog = dynamic(() => import('../features/get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
 export type TariffCardType = 'free' | 'business';
 
@@ -59,8 +62,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
     free: [
       'Полный доступ ко всем инструментам, за исключением ИИ',
       'Одно рабочее место с полным доступом',
-      'Дополнительное рабочее место рекрутера в подарок - только до конца месяца!',
-      'До 5000 резюме в базе',
+      'До 1000 резюме в базе',
       'Поддержка через форму ОС',
     ],
     business: [
@@ -193,7 +195,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
       </Link>
     ),
     business: (
-      <GetDemoDialog
+      <DynamicDemoDialog
         triggerButton={
           <Button
             variant={'secondary'}
