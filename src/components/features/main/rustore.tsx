@@ -49,16 +49,14 @@ export function MainRustore() {
               className={'w-fit'}
               asChild
             >
-              <Typography
-                variant={'button'}
-                className={'!text-(--active-dark)'}
-              >
-                Скачать приложение
-              </Typography>
+              <Typography variant={'button'}>Скачать приложение</Typography>
             </Button>
           </Link>
 
-          <div className={'hidden xl:inline-block'}>
+          <div
+            className={'hidden xl:inline-block'}
+            data-lenis-prevent
+          >
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>

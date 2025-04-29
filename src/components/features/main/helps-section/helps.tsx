@@ -97,7 +97,7 @@ export function MainHelps() {
         variant={'h1-medium'}
         animationAmount={0.2}
         animationDuration={0.75}
-        className={'mb-20 text-center'}
+        className={'mb-20 text-center text-(--fill-white)'}
       >
         Huntlee поможет <br />
         достигнуть бизнес-целей
@@ -159,7 +159,7 @@ export function MainHelps() {
 
       <Typography
         variant={'h3-medium'}
-        className={'xl:hidden mb-6 text-center'}
+        className={'xl:hidden mb-6 text-center text-(--fill-white)'}
       >
         Решаем задачи каждого участника процесса подбора
       </Typography>

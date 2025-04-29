@@ -161,7 +161,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
     free: (
       <Typography
         variant={'h4-medium'}
-        className={'text-(--active-green) my-10'}
+        className={'text-(--active-green) mt-6 xl:mb-10 mb-10'}
       >
         Бесплатно
       </Typography>
@@ -171,8 +171,13 @@ export function TariffCard({ type }: { type: TariffCardType }) {
         variant={'h4-medium'}
         className={'flex flex-col gap-1 text-(--fill-white) my-10'}
       >
-        <p className={'block'}>4500 ₽/мес за 1 рабочее место</p>
-        <p className={'block'}>*При оплате на год</p>
+        4500 ₽/мес за 1 рабочее место
+        <Typography
+          variant={'button'}
+          className={'text-(--fill-white)'}
+        >
+          *При оплате на год
+        </Typography>
         {/* <p className={'md:hidden'}>4500 ₽/мес за 1 рабочее место</p> */}
       </Typography>
     ),
@@ -213,7 +218,7 @@ export function TariffCard({ type }: { type: TariffCardType }) {
   return (
     <div
       className={cn(
-        'relative overflow-hidden border border-(--border-light) rounded-xl px-10 py-6 flex flex-col gap-3',
+        'relative overflow-hidden border border-(--border-light) rounded-xl px-6 xl:px-10 py-6 flex flex-col',
         type === 'free' && 'bg-(--fill-white)',
       )}
     >

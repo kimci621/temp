@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import AnimationBlur from '../animation/blur';
+import { cn } from '@/lib/utils/cn';
 
 export function MainPartners() {
   const response = useApi<PartnerLogo[]>('/api/partners-logo');
@@ -28,20 +29,27 @@ export function MainPartners() {
       </TypographyAnimated>
 
       {partners && (
-        <div className={'flex flex-wrap items-center justify-center gap-16'}>
-          {partners.map((partner) => (
-            <AnimationBlur
-              key={partner.id}
-              duration={0.5}
+        <div className={'w-full gap-x-4 md:gap-x-16 gap-y-16 flex flex-wrap items-center justify-center mt-6 md:mt-4'}>
+          {partners.map((partner, idx) => (
+            <div
+              key={idx.toString()}
+              className={cn(
+                'flex items-center justify-center',
+                idx !== partners.length - 1 ? 'w-[calc(50%-16px)] md:w-fit' : 'w-full md:w-fit',
+              )}
             >
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={partner.width}
-                height={partner.height}
-                className={`w-[${partner.width}px] h-[${partner.height}px]`}
-              />
-            </AnimationBlur>
+              <AnimationBlur
+                duration={0.5}
+                isOnce={true}
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                />
+              </AnimationBlur>
+            </div>
           ))}
         </div>
       )}

@@ -40,7 +40,9 @@ export const MainReviewCard = React.memo(function MainReviewCard({
           <Typography
             variant={'button'}
             className={'text-(--text-light-gray)'}
-          >{`${review.position}, ${review.company}`}</Typography>
+          >
+            {`${review.position}, ${review.company}`}
+          </Typography>
         </article>
 
         {review.logo && (

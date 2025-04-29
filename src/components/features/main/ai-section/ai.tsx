@@ -8,17 +8,17 @@ import PulseBackground from '@/components/features/animation/pulse-background';
 
 export function MainAi() {
   return (
-    <section className={'flex flex-col items-center'}>
+    <section className={'overflow-hidden flex flex-col gap-6 items-center py-10'}>
       <SectionTag
         emoji={'⚡️'}
         name={'Быстро. Качественно. Дешево. '}
-        className={'mt-[64px] md:mt-[80px] xl:mt-[200px] mb-6'}
+        className={'mt-[64px] md:mt-[80px] xl:mt-[200px]'}
         isLight
       />
 
       <TypographyAnimated
         variant={'h1-medium'}
-        className={'text-center text-(--text-light) mb-5'}
+        className={'text-center text-(--text-light)'}
         animationAmount={0.2}
         animationDuration={0.75}
       >
@@ -26,7 +26,7 @@ export function MainAi() {
         для вашего успеха
       </TypographyAnimated>
 
-      <div className={cn('relative w-full flex justify-center')}>
+      <div className={cn('relative w-full flex justify-center mt-26 mb-16 md:mt-0 md:mb-0')}>
         <PulseBackground
           bgColor={'bg-[#CFD4D6]'}
           scaleStates={[0.65, 0.8, 0.65]}
@@ -40,7 +40,7 @@ export function MainAi() {
             height={4032}
             loading="lazy"
             quality={100}
-            className={cn('w-full xl:max-w-[945px] md:scale-90')}
+            className={cn('w-full xl:max-w-[945px] scale-160 md:scale-100')}
           />
         </PulseBackground>
 

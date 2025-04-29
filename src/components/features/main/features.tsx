@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactSlider, type ReactSliderRef } from '../react-slider';
+import { AnimationOpacity } from '../animation/opacity';
 
 const DynamicDemoDialog = dynamic(() => import('../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
@@ -69,12 +70,16 @@ export function MainFeatures() {
       maxWidth: 509,
     },
   ];
+
   const [activeTab, setActiveTab] = useState(carouselItems[0].value);
   const tabImages = carouselItems.map((i) => ({
     src: `/images/main-features-carousel-content/${i.value}.png`,
     alt: i.label,
   }));
+
   const slider = useRef<ReactSliderRef | null>(null);
+
+  const [bgOpacityStyle, setBgOpacityStyle] = useState<'opacity-[70%]' | 'opacity-[100%]'>('opacity-[70%]');
 
   const handleTabChange = (idx: number) => {
     slider?.current?.goToIndex(idx);
@@ -93,7 +98,7 @@ export function MainFeatures() {
         variant={'h1-medium'}
         animationAmount={0.2}
         animationDuration={0.75}
-        className={'mb-20 text-center'}
+        className={'mb-20 text-center text-(--fill-white)'}
       >
         Весь необходимый функционал <br />
         для работы и даже больше
@@ -123,7 +128,6 @@ export function MainFeatures() {
         ref={slider}
         config={{
           infinite: true,
-          snap: true,
           onSlideChange: (currentSlide) => {
             setActiveTab(carouselItems[currentSlide].value);
           },
@@ -133,19 +137,19 @@ export function MainFeatures() {
           <div
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             key={idx}
-            className={'flex items-center justify-center w-[80vw] md:w-[320px] xl:w-[400px] shrink-0 px-2'}
+            className="flex w-[80vw] md:w-[30vw] xl:w-[25vw] shrink-0 items-center justify-center px-2"
           >
             {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
             <div
               onClick={() => handleTabChange(idx)}
               className={cn(
                 activeTab !== c.value ? 'bg-(--fill-dark-fill)' : 'bg-(--active-dark)',
-                'text-center px-6 py-2 rounded-lg cursor-pointer',
+                'text-center px-6 py-2 rounded-lg cursor-pointer w-full',
               )}
             >
               <Typography
                 variant={'button'}
-                className={'w-full break-words'}
+                className={'break-words text-(--fill-white)'}
               >
                 {c.label}
               </Typography>
@@ -156,105 +160,118 @@ export function MainFeatures() {
 
       <div className={'w-full container-inner mt-10 xl:mt-12'}>
         <AnimatePresence mode="wait">
-          {tabImages.map(
-            (i, idx) =>
-              `/images/main-features-carousel-content/${activeTab}.png` === i.src && (
-                <motion.div
-                  key={idx.toString()}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={cn(
-                    'rounded-2xl border border-(--border-dark) bg-(--fill-dark-fill) p-1 relative overflow-hidden',
-                  )}
-                >
-                  <Image
-                    src={i.src}
-                    alt={i.alt}
-                    width={1680}
-                    height={960}
-                    priority={true}
-                    quality={100}
-                    className={cn('w-full h-full object-contain rounded-xl')}
-                  />
-
-                  {/* Blurred background image with lower z-index */}
-                  <div className="absolute bottom-[-80px] left-0 w-full h-[300px] z-1">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={cn(
+              'rounded-2xl border border-(--border-dark) bg-(--fill-dark-fill) p-1 relative overflow-hidden',
+            )}
+          >
+            {tabImages.map(
+              (i, idx) =>
+                `/images/main-features-carousel-content/${activeTab}.png` === i.src && (
+                  <AnimationOpacity
+                    key={i.src}
+                    duration={1}
+                  >
                     <Image
-                      src={'/images/mountains-without-bg.png'}
-                      alt="bg filtered image"
-                      width={1678}
-                      height={620}
-                      loading="lazy"
-                      quality={10}
-                      className={cn('w-full h-full object-cover blur-[100px]')}
-                    />
-                  </div>
-
-                  {/* Background mountain image */}
-                  <div className="absolute bottom-0 left-0 w-full z-2">
-                    <Image
-                      src={'/images/mountains-without-bg.png'}
-                      alt="bg image"
-                      width={1678}
-                      height={620}
-                      loading="lazy"
+                      src={i.src}
+                      alt={i.alt}
+                      width={1680}
+                      height={960}
+                      priority={true}
                       quality={100}
-                      className={cn('w-full h-auto')}
+                      className={cn('w-full h-full object-contain rounded-xl')}
                     />
-                  </div>
+                  </AnimationOpacity>
+                ),
+            )}
 
-                  <div className={'w-full flex flex-col items-center pb-20 relative z-10 h-[410px] xl:h-[620px]'}>
-                    <SectionTag
-                      emoji={'🤖'}
-                      name={'Широкий инструментарий'}
-                      className={'mx-auto mt-10 md:mt-14 xl:mt-20'}
-                    />
+            {/* Blurred background image with lower z-index */}
+            <div className="absolute bottom-0 left-0 w-[140%] md:w-full z-1">
+              <Image
+                src={'/images/mountains-without-bg.png'}
+                alt="bg filtered image"
+                width={1168}
+                height={246}
+                loading="lazy"
+                quality={10}
+                className={cn('w-full h-auto blur-[100px] transition-all ease-out duration-300', bgOpacityStyle)}
+              />
+            </div>
 
-                    <TypographyAnimated
-                      variant={'h3-medium'}
-                      animationAmount={0.2}
-                      animationDuration={0.75}
-                      className={'mt-6 text-center'}
+            {/* Background mountain image */}
+            <div className="absolute bottom-0 left-0 w-[140%] md:w-full z-2">
+              <Image
+                src={'/images/mountains-without-bg.png'}
+                alt="bg image"
+                width={1168}
+                height={246}
+                loading="lazy"
+                quality={100}
+                className={cn('w-full h-auto transition-all ease-out duration-300', bgOpacityStyle)}
+              />
+            </div>
+
+            <div className={'w-full flex flex-col items-center pb-[40px] md:pb-[80px] xl:pb-[140px] relative z-10'}>
+              <SectionTag
+                emoji={'🤖'}
+                name={'Широкий инструментарий'}
+                className={'mx-auto mt-10 md:mt-14 xl:mt-20'}
+              />
+
+              <TypographyAnimated
+                variant={'h3-medium'}
+                animationAmount={0.2}
+                animationDuration={0.75}
+                className={'mt-6 text-center text-(--fill-white)'}
+              >
+                Huntlee – это не просто оптимизация затрат,
+                <br />а инструмент для достижения долгосрочных
+                <br />
+                бизнес-целей
+              </TypographyAnimated>
+
+              <TypographyAnimated
+                variant={'text'}
+                animationAmount={0.2}
+                animationDuration={0.75}
+                className={'mt-6 text-center text-(--fill-white)'}
+              >
+                Для успешной работы в системе достаточно ознакомиться с инструкцией
+              </TypographyAnimated>
+
+              <DynamicDemoDialog
+                className={'mt-10 xl:mt-20'}
+                triggerButton={
+                  <div
+                    onMouseEnter={(e) => {
+                      setBgOpacityStyle('opacity-[100%]');
+                    }}
+                    onMouseLeave={(e) => {
+                      setBgOpacityStyle('opacity-[70%]');
+                    }}
+                  >
+                    <Button
+                      variant={'secondary'}
+                      className={'w-fit'}
+                      asChild
                     >
-                      Huntlee – это не просто оптимизация затрат,
-                      <br />а инструмент для достижения долгосрочных
-                      <br />
-                      бизнес-целей
-                    </TypographyAnimated>
-
-                    <TypographyAnimated
-                      variant={'text'}
-                      animationAmount={0.2}
-                      animationDuration={0.75}
-                      className={'mt-6 text-center'}
-                    >
-                      Для успешной работы в системе достаточно ознакомиться с инструкцией
-                    </TypographyAnimated>
-
-                    <DynamicDemoDialog
-                      className={'mt-20'}
-                      triggerButton={
-                        <Button
-                          variant={'secondary'}
-                          className={'w-fit'}
-                          asChild
-                        >
-                          <Typography
-                            variant={'button'}
-                            className={'text-(--text-light)'}
-                          >
-                            <span className={'hidden md:inline'}>Ознакомиться со всем функционалом</span>
-                            <span className={'inline md:hidden'}>Весь функционал</span>
-                          </Typography>
-                        </Button>
-                      }
-                    />
+                      <Typography
+                        variant={'button'}
+                        className={'text-(--text-light)'}
+                      >
+                        <span className={'hidden md:inline'}>Ознакомиться со всем функционалом</span>
+                        <span className={'inline md:hidden'}>Весь функционал</span>
+                      </Typography>
+                    </Button>
                   </div>
-                </motion.div>
-              ),
-          )}
+                }
+              />
+            </div>
+          </motion.div>
         </AnimatePresence>
       </div>
     </div>

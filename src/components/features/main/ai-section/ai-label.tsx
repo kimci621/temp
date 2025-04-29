@@ -2,6 +2,7 @@ import Typography from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import AnimationBlur from '../../animation/blur';
+import { AnimationOpacity } from '../../animation/opacity';
 
 interface AiLabelsProps {
   className?: string;
@@ -9,7 +10,7 @@ interface AiLabelsProps {
 
 function LabelIcon({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className={'bg-(--fill-white) rounded-xl size-16 min-w-16 min-h-16 flex items-center justify-center'}>
+    <div className={'bg-(--fill-white) rounded-xl size-16 min-w-16 min-h-16 flex items-center justify-center z-2'}>
       <Image
         src={src}
         alt={alt}
@@ -25,7 +26,9 @@ function LabelIcon({ src, alt }: { src: string; alt: string }) {
 
 function LabelItem({ labelPosition }: { labelPosition: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' }) {
   const innerStyles =
-    'relative rounded-xl p-2 md:p-3 border border-(--fill-white) bg-[#FFFFFF66] backdrop-filter: blur(12.5px) flex items-center gap-4 md:gap-6 relative';
+    'relative rounded-[16px] md:rounded-[20px] p-2 md:p-3 border border-(--fill-white) flex items-center gap-4 md:gap-6 relative';
+
+  const blurStyle = 'ai-label-blur bg-[#FFFFFF66]';
 
   const widths = {
     topLeft: 'w-full md:w-[482px] xl:w-[583px]',
@@ -87,9 +90,9 @@ function LabelItem({ labelPosition }: { labelPosition: 'topLeft' | 'topRight' | 
 
   return (
     <div className={fullClasses}>
-      <AnimationBlur
+      <AnimationOpacity
         delay={1}
-        amount={1}
+        duration={1}
       >
         <div className={innerStyles}>
           <LabelIcon
@@ -99,7 +102,7 @@ function LabelItem({ labelPosition }: { labelPosition: 'topLeft' | 'topRight' | 
 
           <Typography
             variant={'h4-medium'}
-            className={'text-(--text-light)'}
+            className={cn('text-(--text-light)', 'z-2')}
           >
             {labelText[labelPosition]}
           </Typography>
@@ -111,10 +114,16 @@ function LabelItem({ labelPosition }: { labelPosition: 'topLeft' | 'topRight' | 
             height={labelVectorHeight[labelPosition]}
             loading="lazy"
             quality={100}
-            className={cn(labelVectorPosition[labelPosition], 'hidden md:inline-block')}
+            className={cn(labelVectorPosition[labelPosition], 'hidden md:inline-block z-2')}
+          />
+
+          <div
+            className={cn(
+              'absolute top-0 left-0 w-full h-full rounded-[14px] md:rounded-[18px] border border-[transparent] z-0 ai-label-blur',
+            )}
           />
         </div>
-      </AnimationBlur>
+      </AnimationOpacity>
     </div>
   );
 }

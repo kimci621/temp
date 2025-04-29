@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { SectionTag } from '@/components/ui/section-tag';
 import TypographyAnimated from '@/components/ui/typography-animated';
 import RevealFromDirection from '../animation/reveal-from-direction';
-import { motion } from 'framer-motion';
+import { AnimationOpacity } from '../animation/opacity';
 
 export function MainPresentation() {
   const carouselItems = [
@@ -31,18 +31,10 @@ export function MainPresentation() {
 
   return (
     <div className={'w-full flex flex-col justify-center items-center relative'}>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        whileInView="visible"
-        transition={{
-          duration: 1,
-          delay: 0.5,
-          ease: 'easeOut',
-        }}
-        viewport={{
-          once: true,
-        }}
+      <AnimationOpacity
+        duration={1}
+        delay={1}
+        isOnce={true}
       >
         <Carousel plugins={[plugin.current]}>
           <CarouselContent className={'w-[306px] xl:w-[400px]'}>
@@ -60,7 +52,7 @@ export function MainPresentation() {
             ))}
           </CarouselContent>
         </Carousel>
-      </motion.div>
+      </AnimationOpacity>
 
       <div className={'flex flex-col gap-10 max-w-[660px] mt-6 xl:mt-10'}>
         <TypographyAnimated

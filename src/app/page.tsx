@@ -9,33 +9,42 @@ import { MainTariffs } from '@/components/features/main/tariffs';
 import { MainNewLevel } from '@/components/features/main/new-level';
 import { MainPartners } from '@/components/features/main/partners';
 import Lenis from 'lenis';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function Home() {
-  if (typeof window !== 'undefined') {
-    const lenis = new Lenis({
-      autoRaf: true,
-      lerp: 0.1,
-      duration: 1.4,
-      prevent: (node) => node.hasAttribute('data-lenis-prevent'),
-    });
+  const homePage = useRef(null);
 
-    useEffect(() => {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && homePage.current) {
+      const lenis = new Lenis({
+        autoRaf: true,
+        lerp: 0.1,
+        duration: 1.4,
+        prevent: (node) => node.hasAttribute('data-lenis-prevent'),
+      });
+
       return () => {
         lenis.destroy();
+
+        setTimeout(() => {
+          console.log('destroyed', lenis);
+        }, 1000);
       };
-    });
-  }
+    }
+  }, []);
 
   return (
-    <div className="w-full">
+    <div
+      className="w-full"
+      ref={homePage}
+    >
       <div className="container-full mx-auto">
         <div className={'w-full flex justify-center mt-[40px] md:mt-[64px] xl:mt-[92px]'}>
           <MainPresentation />
         </div>
 
         <div className={'bg-(--fill-dark-bg) py-[80px] xl:py-[200px] flex flex-col items-center is-dark-bg'}>
-          <div className={'container-inner'}>
+          <div className={'container-inner overflow-hidden'}>
             <MainHelps />
           </div>
 

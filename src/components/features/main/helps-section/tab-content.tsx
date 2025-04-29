@@ -32,7 +32,7 @@ export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, 
         <div className={'relative z-10 px-10 py-6 flex flex-col gap-10'}>
           <Typography
             variant={'h3-medium'}
-            className={'max-w-[546px]'}
+            className={'max-w-[546px] text-(--fill-white)'}
           >
             {title}
           </Typography>
@@ -55,12 +55,14 @@ export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, 
                   >
                     <Typography
                       variant={'h3-medium'}
-                      className={'w-[50px]'}
-                    >{`0${index + 1}`}</Typography>
+                      className={'w-[50px] text-(--fill-white)'}
+                    >
+                      {`0${index + 1}`}
+                    </Typography>
 
                     <Typography
                       variant={'text'}
-                      className={'max-w-[546px]'}
+                      className={'max-w-[546px] text-(--fill-white)'}
                     >
                       {item}
                     </Typography>
@@ -135,7 +137,7 @@ export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, 
           {list.map((item, index) => (
             <li
               key={index.toString()}
-              className={'grid grid-cols-[auto_1fr] items-start gap-2'}
+              className={'grid grid-cols-[auto_1fr] items-start gap-2 text-(--fill-white)'}
             >
               <Typography variant={'h4-medium'}>{`0${index + 1}`}</Typography>
 

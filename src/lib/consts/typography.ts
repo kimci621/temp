@@ -24,8 +24,8 @@ export const TypographyClasses = {
   mobile: {
     'h1-bold': 'text-[32px] font-[700] font-manrope leading-[32px]',
     'h1-medium': 'text-[32px] font-[600] font-manrope leading-[32px]',
-    'h2-medium': 'text-[24px] font-[600] font-manrope leading-[24px]',
-    'h3-medium': 'text-[22px] font-[500] font-manrope leading-[22px]',
+    'h2-medium': 'text-[24px] font-[600] font-manrope leading-[30px]',
+    'h3-medium': 'text-[22px] font-[500] font-manrope leading-[28px]',
     'h4-medium': 'text-[18px] font-[500] font-manrope leading-[24px]',
     button: 'text-[16px] font-[600] font-manrope leading-[16px]',
     text: 'text-[14px] font-[500] font-manrope leading-[22px]',

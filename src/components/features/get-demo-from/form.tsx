@@ -93,7 +93,7 @@ export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
 
       <Button
         type="submit"
-        className={'mt-6'}
+        className={'mt-6 w-fit'}
       >
         Запросить демо сейчас
       </Button>

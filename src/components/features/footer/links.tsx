@@ -28,19 +28,21 @@ export function FooterLinks() {
         {links.map((link) => (
           <Link
             href={link.href}
-            className={'group flex items-center gap-3 w-fit'}
+            className={'group flex items-center justify-center xl:justify-start gap-3 w-full'}
             key={link.href}
           >
             <TypographyAnimated
               variant="h4-medium"
-              className={'text-(--fill-white) w-full text-center xl:text-left'}
+              className={'text-(--fill-white) text-center xl:text-left'}
               animationAmount={0.2}
               animationDuration={0.75}
             >
               {link.label}
             </TypographyAnimated>
 
-            <ArrowUpRight className={'opacity-0 group-hover:opacity-100 transition text-(--active-green)'} />
+            <ArrowUpRight
+              className={'hidden xl:inline-flex opacity-0 group-hover:opacity-100 transition text-(--active-green)'}
+            />
           </Link>
         ))}
       </div>

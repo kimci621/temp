@@ -13,7 +13,7 @@ export function MainPagePromoBackground() {
         objectFit: 'cover',
         zIndex: '-12',
       }}
-      className={'absolute top-[100px] md:-top-[0px] xl:-top-[100px]  -z-10 w-full h-fit left-1/2 translate-x-[-50%]'}
+      className={'absolute top-[290px] md:top-[100px] xl:top-0 -z-10 w-full h-fit left-1/2 translate-x-[-50%]'}
     />
   );
 }

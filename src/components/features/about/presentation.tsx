@@ -1,17 +1,15 @@
 import React from 'react';
-import { MainPagePromoBackground } from '@/components/ui/main-page-promo-background';
 import { SectionTag } from '@/components/ui/section-tag';
 import TypographyAnimated from '@/components/ui/typography-animated';
-import RevealFromDirection from '../animation/reveal-from-direction';
 import { cn } from '@/lib/utils/cn';
+import { AnimationOpacity } from '../animation/opacity';
 
 const AboutPresentation = React.memo(function AboutPresentation({ className }: { className?: string }) {
   return (
     <div className={cn('w-full flex flex-col gap-6 xl:gap-10 justify-center items-center relative', className)}>
-      <RevealFromDirection
-        direction={'top'}
-        delay={0.5}
-        duration={0.5}
+      <AnimationOpacity
+        duration={1}
+        delay={1}
         isOnce={true}
       >
         <SectionTag
@@ -19,7 +17,7 @@ const AboutPresentation = React.memo(function AboutPresentation({ className }: {
           name={'Быстро. Качественно. Дешево.'}
           isLight
         />
-      </RevealFromDirection>
+      </AnimationOpacity>
 
       <TypographyAnimated
         variant={'h1-bold'}
