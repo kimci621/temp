@@ -12,15 +12,20 @@ export const AboutPageGridsBottom = memo(function AboutPageGridsBottom({
   return (
     <div
       className={cn(
-        'GridsBottomGradientElement',
+        'rounded-[16px]',
         'w-full min-h-[126px] md:min-h-[118px] xl:min-h-[168px] h-fit',
-        'relative py-3 px-3 md:py-4 md:px-4 xl:py-6 xl:px-10 rounded-[8px] xl:rounded-[10px] transition-all duration-300 ease-out',
+        'relative rounded-[8px] xl:rounded-[10px] transition-all duration-300 ease-out',
         className,
       )}
+      style={{
+        ...content.descriptionStyles,
+      }}
     >
       <div
         key={content.id}
-        className={'overflow-hidden flex flex-col gap-2 xl:gap-4 max-w-full md:max-w-[500px] xl:max-w-[800px]'}
+        className={
+          'overflow-hidden flex flex-col gap-2 xl:gap-4 py-3 px-3 md:py-4 md:px-4 xl:py-6 xl:px-10 max-w-[550px]'
+        }
       >
         <Typography
           variant={'h3-medium'}
@@ -45,14 +50,12 @@ export const AboutPageGridsBottom = memo(function AboutPageGridsBottom({
       </div>
 
       <Image
-        src={'/images/green-3d-render-of-triangle.png'}
+        src={`/images/${content.descriptionBgPath}.png`}
         alt={content.description}
-        width={'352'}
-        height={'257'}
+        width={'628'}
+        height={'168'}
         quality={100}
-        className={
-          'absolute top-0 -right-[130px] md:-right-[40px] xl:right-[20px] h-[50px] md:h-[180px] xl:h-[260px] z-1 object-contain'
-        }
+        className={'hidden xl:block absolute top-0 right-0 h-full z-1 rounded-tr-[10px] rounded-br-[10px]'}
       />
     </div>
   );

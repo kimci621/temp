@@ -130,7 +130,7 @@ export function ButtonWithVideo({
 
       <div
         className={
-          'hidden xl:block absolute -z-1 -top-[4px] -left-[4px] bg-(--fill-white) w-[calc(100%+8px)] h-[202px] rounded-[12px] border border-(--border-light)'
+          'hidden xl:block absolute -z-1 -top-[4px] -left-[4px] bg-(--fill-white) w-[calc(100%+8px)] h-[162px] rounded-[12px] border border-(--border-light)'
         }
       />
     </div>

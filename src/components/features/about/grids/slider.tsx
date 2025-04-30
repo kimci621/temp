@@ -8,11 +8,20 @@ import { SliderItem } from './item';
 import { SliderContentItem } from './content';
 import { AboutPageGridsBottom } from './bottom-grid';
 import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { useUiStore } from '@/lib/store/ui';
 
 const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?: string }) {
   const [activeCase, setActiveCase] = useState<BusinessCase>(businessCases[0]);
+  const setAboutPageBgPath = useUiStore((state) => state.setAboutPageBgPath);
 
   const [api, setApi] = useState<CarouselApi>();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (activeCase) {
+      setAboutPageBgPath({ path: activeCase.bgPath });
+    }
+  }, [activeCase]);
   return (
     <div className={cn('flex flex-col gap-6 xl:gap-10 justify-center items-center', className)}>
       <div
