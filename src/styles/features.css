@@ -104,3 +104,65 @@
   /* Safari и старые Chrome */
   backdrop-filter: blur(12.5px);
 }
+
+.about-ellipse-bg {
+  width: 2500px;
+  height: 2500px;
+  aspect-ratio: 1/1;
+  border-radius: 2500px;
+  opacity: 0.5;
+  filter: blur(150px);
+}
+
+@media screen and (max-width: 1280px) {
+  .about-ellipse-bg {
+    width: 1103.448px;
+    height: 1103.448px;
+    aspect-ratio: 1103.45/1103.45;
+    border-radius: 1103.448px;
+    opacity: 0.5;
+    filter: blur(66.20689392089844px);
+  }
+}
+
+.about-ellipse-bg-1 {
+  background: radial-gradient(50% 50% at 50% 50%, #156350 0%, #131313 100%);
+}
+
+.about-ellipse-bg-2 {
+  background: radial-gradient(50% 50% at 50% 50%, #155063 0%, #131313 100%);
+}
+
+.about-ellipse-bg-3 {
+  background: radial-gradient(50% 50% at 50% 50%, #795B29 0%, #131313 100%);
+}
+
+.about-ellipse-bg-4 {
+  background: radial-gradient(50% 50% at 50% 50%, #4F3D58 0%, #131313 100%);
+}
+
+.about-ellipse-bg-5 {
+  background: radial-gradient(50% 50% at 50% 50%, #552929 0%, #131313 100%);
+}
+
+.about-ellipse-bg-6 {
+  background: radial-gradient(50% 50% at 50% 50%, #31492C 0%, #131313 100%);
+}
+
+.about-ellipse-bg-7 {
+  background: radial-gradient(50% 50% at 50% 50%, #394271 0%, #131313 100%);
+}
+
+.about-ellipse-bg-8 {
+  background: radial-gradient(50% 50% at 50% 50%, #156359 0%, #131313 100%);
+}
+
+.about-bg-text {
+  color: #131313;
+  text-align: center;
+  font-size: 341.538px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 398.462px;
+  opacity: 0.3;
+}

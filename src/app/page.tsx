@@ -25,10 +25,6 @@ export default function Home() {
 
       return () => {
         lenis.destroy();
-
-        setTimeout(() => {
-          console.log('destroyed', lenis);
-        }, 1000);
       };
     }
   }, []);
