@@ -166,3 +166,15 @@
   line-height: 398.462px;
   opacity: 0.3;
 }
+
+.about-slides-tumbler-gradient-1 {
+  background: linear-gradient(90deg, #3EB879 0%, #26D078 100%);
+}
+
+.about-slides-tumbler-gradient-2 {
+  background: linear-gradient(0deg, #3EB879 0%, #26D078 100%);
+}
+
+.about-slides-tumbler-gradient-3 {
+  background: linear-gradient(270deg, #3EB879 0%, #26D078 100%);
+}

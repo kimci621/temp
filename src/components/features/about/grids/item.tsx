@@ -12,9 +12,11 @@ export const SliderItem = memo(function SliderItem({
     // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div
       className={cn(
-        'cursor-pointer p-2 xl:p-4 rounded-[8px] xl:rounded-[10px] flex items-center justify-center transition-all duration-300 ease-out',
+        'cursor-pointer p-2 xl:p-4 rounded-[8px] xl:rounded-[10px] flex items-center justify-center transition-all duration-300 xl:duration-0 ease-out',
         'text-[18px] font-[500] leading-[24px] md:text-[20px] md:font-[600] xl:text-[24px] xl:leading-[32px] text-center',
-        isActive ? 'bg-(--active-green-light) text-(--fill-white) is-active' : 'bg-(--fill-white) text-(--text-light)',
+        isActive
+          ? 'bg-(--active-green-light)  text-(--fill-white) is-active xl:opacity-0'
+          : 'bg-(--fill-white) text-(--text-light)',
         className,
       )}
       onClick={onClick}

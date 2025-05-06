@@ -17,7 +17,7 @@ export const AboutPageFirstSectionBackground = React.memo(function AboutPageFirs
             <AnimationBlur
               key={idx.toString()}
               isOnce
-              duration={0.3}
+              duration={0.5}
             >
               <Image
                 alt="liquid background"

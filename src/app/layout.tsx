@@ -7,6 +7,7 @@ import '@/styles/globals.css';
 import '@/styles/scrollbar.css';
 import '@/styles/features.css';
 import 'lenis/dist/lenis.css';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   title: 'Автоматизация HR и подбора персонала — Huntlee',
@@ -31,6 +32,7 @@ export default function RootLayout({
           <Header />
 
           <main className="flex-grow">{children}</main>
+          <Toaster />
 
           <Footer />
         </ThemeProvider>

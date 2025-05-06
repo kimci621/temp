@@ -8,24 +8,110 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox/checkbox';
 import Link from 'next/link';
 import Typography from '@/components/ui/typography'; // Импорт схемы
+import { useEffect, useState } from 'react';
+import { useHookFormMask } from 'use-mask-input';
+import { toast } from 'sonner';
+import { type Feedback, useFeedbackApi } from '@/lib/hooks/api/feedback';
 
 export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    mode: 'onSubmit',
   });
+  const registerWithMask = useHookFormMask(register);
 
-  const submitCallback = (data: FormData) => {
-    console.log(data);
+  // Простой обработчик успешной отправки
+  const onSubmit = async (data: FormData) => {
+    const requestBody: Feedback = {
+      name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      comment: '',
+      feedback_type: 'landing',
+      company: data.company || '',
+      extra_fields: [
+        {
+          type: 'string',
+          name: 'Количество рекрутеров',
+          value: data.recruiters || '',
+        },
+        {
+          type: 'string',
+          name: 'Согласие на обработку персональных данных',
+          value: data.agreeToNews ? 'Да' : 'Нет',
+        },
+      ],
+    };
+
+    const dialogCloseBtn = document.getElementById('dialog-close-button');
+
+    try {
+      const response = await useFeedbackApi(requestBody);
+
+      if (response?.status === 200) {
+        toast(
+          <Typography
+            variant={'text'}
+            className="text-center"
+          >
+            Данные успешно отправлены. <br />
+            Наш менеджер свяжется с Вами в ближайшее время
+          </Typography>,
+          {
+            duration: 5000,
+            position: 'top-center',
+          },
+        );
+
+        if (dialogCloseBtn) {
+          dialogCloseBtn.click();
+        }
+      } else {
+        toast(
+          <Typography
+            variant={'text'}
+            className="text-center"
+          >
+            Произошла ошибка при отправке данных. <br />
+            Пожалуйста, попробуйте еще раз <br />
+            {response?.statusText}
+          </Typography>,
+          {
+            duration: 5000,
+            position: 'top-center',
+          },
+        );
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке данных:', error);
+      return;
+    } finally {
+      setIsSubmitted(true);
+    }
   };
 
+  // Логгер ошибок
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  const onError = (errors: any) => {
+    console.error('Ошибки при отправке формы:', errors);
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setValue('agreeToNews', true);
+  }, []);
   return (
     <form
-      onSubmit={handleSubmit((data) => submitCallback(data))}
+      // Используем стандартный handleSubmit из react-hook-form
+      onSubmit={handleSubmit(onSubmit, onError)}
       className={'flex flex-col gap-4 w-full md:w-[423px]'}
+      noValidate
     >
       <Input
         {...register('fullName')}
@@ -35,9 +121,9 @@ export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
       />
 
       <Input
-        {...register('phone')}
+        {...registerWithMask('phone', ['+7 (999) 999-99-99'], { required: true })}
         label={'* Номер телефона'}
-        placeholder={'+7(___)___-__-__'}
+        placeholder={'+7 (___) ___-__-__'}
         error={errors.phone ? errors.phone.message : ''}
       />
 
@@ -51,7 +137,7 @@ export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
       <Input
         {...register('company')}
         label={'Название компании'}
-        placeholder={'ООО “Ваша компания”'}
+        placeholder={'ООО "Ваша компания"'}
         error={errors.company ? errors.company.message : ''}
       />
 
@@ -64,14 +150,14 @@ export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
       />
 
       <Checkbox
-        {...register('agreeToNews')}
-        id={'agreeToNews'}
+        onCheckedChange={(checked: boolean) => {
+          setValue('agreeToNews', checked);
+        }}
         label={'Разрешаю отправлять мне новости о продукте'}
-        defaultChecked={true}
+        defaultChecked
         textClassName={isInFooter ? 'text-(--text-dark)' : ''}
       />
 
-      {/*{errors.agreeToNews && <p>{errors.agreeToNews.message}</p>}*/}
       <Typography variant={'caption'}>
         <p className={'text-(--text-dark-gray)'}>
           Отправляя форму, я даю согласие на обработку{' '}
@@ -94,8 +180,9 @@ export function GetDemoForm({ isInFooter = false }: { isInFooter?: boolean }) {
       <Button
         type="submit"
         className={'mt-6 w-fit'}
+        disabled={isSubmitting}
       >
-        Запросить демо сейчас
+        {isSubmitting ? 'Отправка...' : 'Запросить демо сейчас'}
       </Button>
     </form>
   );

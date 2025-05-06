@@ -34,19 +34,19 @@ export const AboutPageGridsBottom = memo(function AboutPageGridsBottom({
           {content.descriptionTitle}
         </Typography>
 
-        <RevealFromDirection
+        {/* <RevealFromDirection
           direction={'bottom'}
           delay={0}
           duration={0.3}
           isOnce={false}
+        > */}
+        <Typography
+          variant={'text'}
+          className={'text-(--fill-white)'}
         >
-          <Typography
-            variant={'text'}
-            className={'text-(--fill-white)'}
-          >
-            {content.description}
-          </Typography>
-        </RevealFromDirection>
+          {content.description}
+        </Typography>
+        {/* </RevealFromDirection> */}
       </div>
 
       <Image

@@ -9,10 +9,22 @@ import { SliderContentItem } from './content';
 import { AboutPageGridsBottom } from './bottom-grid';
 import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { useUiStore } from '@/lib/store/ui';
+import { AnimationOpacity } from '../../animation/opacity';
+import Typography from '@/components/ui/typography';
 
 const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?: string }) {
   const [activeCase, setActiveCase] = useState<BusinessCase>(businessCases[0]);
   const setAboutPageBgPath = useUiStore((state) => state.setAboutPageBgPath);
+  const tumbler = {
+    'small-case': 'translate-x-[0%]',
+    'medium-case': 'translate-x-[100%]',
+    'large-case': 'translate-x-[calc(200%-12px)]',
+  };
+  const gradientClasses = {
+    'small-case': 'about-slides-tumbler-gradient-1',
+    'medium-case': 'about-slides-tumbler-gradient-2',
+    'large-case': 'about-slides-tumbler-gradient-3',
+  };
 
   const [api, setApi] = useState<CarouselApi>();
 
@@ -26,7 +38,7 @@ const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?:
     <div className={cn('flex flex-col gap-6 xl:gap-10 justify-center items-center', className)}>
       <div
         className={cn(
-          'hidden md:grid grid-cols-3 gap-1 xl:gap-2 p-1 xl:p-1.5 w-full',
+          'relative hidden md:grid grid-cols-3 gap-1 xl:gap-2 p-1 xl:p-1.5 w-full',
           'rounded-[12px] xl:rounded-[16px] border border-(--border-light) bg-(--fill-white) ',
         )}
       >
@@ -42,6 +54,18 @@ const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?:
             }}
           />
         ))}
+
+        <div
+          className={cn(
+            'w-1/3 h-[calc(100%-12px)] absolute -translate-y-1/2 rounded-[10px] xl:rounded-[10px] p-2 xl:p-4 flex items-center justify-center transition-all duration-500 ease-out border border-[#309E66]',
+            'text-(--fill-white) text-[18px] font-[500] leading-[24px] md:text-[20px] md:font-[600] xl:text-[24px] xl:leading-[32px] text-center',
+            'left-[6px] top-1/2',
+            tumbler[activeCase.id],
+            gradientClasses[activeCase.id],
+          )}
+        >
+          <Typography variant={'h4-medium'}>{activeCase.title}</Typography>
+        </div>
       </div>
 
       <Carousel
@@ -74,7 +98,7 @@ const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?:
       <div>
         {businessCases.map((i, idx) =>
           i.id === activeCase.id ? (
-            <AnimationBlur
+            <AnimationOpacity
               key={i.id}
               duration={0.3}
               isOnce={true}
@@ -85,7 +109,7 @@ const AboutPageGrids = memo(function AboutPageGrids({ className }: { className?:
                   content={i}
                 />
               }
-            </AnimationBlur>
+            </AnimationOpacity>
           ) : (
             <span key={i.id} />
           ),
