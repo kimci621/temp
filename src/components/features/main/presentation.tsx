@@ -54,7 +54,7 @@ export function MainPresentation() {
         </Carousel>
       </AnimationOpacity>
 
-      <div className={'flex flex-col gap-10 max-w-[660px] mt-6 xl:mt-10'}>
+      <div className={'flex flex-col gap-10 max-w-[660px] mt-6 xl:mt-10 px-4 md:px-0'}>
         <TypographyAnimated
           variant={'h1-bold'}
           animationAmount={0.2}

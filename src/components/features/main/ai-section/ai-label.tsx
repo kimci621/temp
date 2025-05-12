@@ -39,7 +39,7 @@ function LabelItem({ labelPosition }: { labelPosition: 'topLeft' | 'topRight' | 
 
   const positions = {
     topLeft: 'md:absolute top-[23%] left-[0%] md:top-[15%] md:left-[15%] xl:top-[20%] xl:left-[10%]',
-    topRight: 'md:absolute top-[37%] right-[-5%] md:top-[37%] md:right-[5%] xl:top-[32%] xl:right-[-5%]',
+    topRight: 'md:absolute top-[37%] right-[-5%] md:top-[37%] md:right-[5%] xl:top-[42%] xl:right-[-5%]',
     bottomLeft: 'md:absolute bottom-[38%] left-[5%] md:bottom-[40%] md:left-[4%] xl:bottom-[35%] xl:left-[0%]',
     bottomRight: 'md:absolute bottom-[20%] right-[-10%] md:bottom-[20%] md:right-[5%] xl:bottom-[15%] xl:right-[-12%]',
   };

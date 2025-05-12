@@ -23,7 +23,7 @@ export function MainTariffs() {
 
       <TypographyAnimated
         variant={'h1-medium'}
-        className={'text-center text-(--text-light) mb-20 md:mb-10'}
+        className={'text-center text-(--text-light) mb-10 xl:mb-20'}
         animationAmount={0.2}
         animationDuration={0.75}
       >
@@ -66,12 +66,14 @@ export function MainTariffs() {
           />
 
           <Image
-            src={'/images/matte-white-render-of-question-mark.png'}
+            src={'/images/matte-white-render-of-question-mark.webp'}
             alt={'matte-white-render-of-question-mark'}
-            width={1056}
-            height={1056}
+            width={4032}
+            height={4032}
             quality={100}
-            className={'absolute top-0 md:right-0 -z-1 h-full w-full md:w-[860px] xl:w-[1090px] object-cover'}
+            className={
+              'absolute -bottom-[55%] md:-bottom-[85%] xl:-bottom-[115%] -right-[25%] md:-right-[25%] xl:-right-[22%] -z-1 size-[492px] md:size-[720px] xl:size-[1056px] object-contain rotate-[52.77deg]'
+            }
           />
         </div>
       </div>

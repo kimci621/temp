@@ -1,7 +1,8 @@
+'use client';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import Typography from '@/components/ui/typography';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SectionTag } from '@/components/ui/section-tag';
 import { MainHelpsSectionTabContent } from './tab-content';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -85,6 +86,24 @@ export function MainHelps() {
   const handleTabChange = (value: string) => {
     setActiveTab(value);
   };
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  let interval: any;
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (!interval) {
+      interval = setInterval(() => {
+        const currentIndex = tabItems.findIndex((tab) => tab.name === activeTab);
+        const nextIndex = (currentIndex + 1) % tabItems.length;
+        handleTabChange(tabItems[nextIndex].name);
+      }, 5000);
+    }
+
+    return () => {
+      interval && clearInterval(interval);
+    };
+  }, [activeTab]);
   return (
     <div className={'flex flex-col items-center'}>
       <SectionTag
@@ -150,6 +169,7 @@ export function MainHelps() {
                   bgStyle={tabContent.bgStyle}
                   link={tabContent.link}
                   list={tabContent.list}
+                  activeTab={activeTab}
                 />
               </TabsContent>
             ))}
@@ -164,7 +184,7 @@ export function MainHelps() {
         Решаем задачи каждого участника процесса подбора
       </Typography>
 
-      <ScrollArea className="xl:hidden w-full ">
+      <ScrollArea className="xl:hidden w-full hidden-scrollbar">
         <div className={'grid gap-2 grid-flow-col auto-cols-[270px] md:auto-cols-[300px]'}>
           {tabsContentItems.map((tabContent) => (
             <MainHelpsSectionTabContent
@@ -176,10 +196,14 @@ export function MainHelps() {
               link={tabContent.link}
               list={tabContent.list}
               label={tabContent.label}
+              activeTab={activeTab}
             />
           ))}
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar
+          orientation="horizontal"
+          className="opacity-0"
+        />
       </ScrollArea>
 
       <DynamicDemoDialog

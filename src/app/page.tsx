@@ -40,7 +40,7 @@ export default function Home() {
         </div>
 
         <div className={'bg-(--fill-dark-bg) py-[80px] xl:py-[200px] flex flex-col items-center is-dark-bg'}>
-          <div className={'container-inner overflow-hidden'}>
+          <div className={'container-inner'}>
             <MainHelps />
           </div>
 

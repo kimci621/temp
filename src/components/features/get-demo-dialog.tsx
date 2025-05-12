@@ -16,7 +16,7 @@ export function GetDemoDialog({
 } & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn('group flex flex-col gap-2', className)}
+      className={cn('relative group flex flex-col gap-2', className)}
       {...props}
     >
       <Dialog>
@@ -25,7 +25,7 @@ export function GetDemoDialog({
         </DialogTrigger>
 
         <DialogContent className={'xl:pr-0'}>
-          <div className={'w-full overflow-x-hidden hidden-y-scrollbar relative xl:-mr-[27px]'}>
+          <div className={'w-full overflow-x-hidden hidden-y-scrollbar relative xl:-mr-[27px] max-h-[90vh]'}>
             <div>
               <DialogTitle className={'opacity-0'}>_</DialogTitle>
 
@@ -48,7 +48,7 @@ export function GetDemoDialog({
               </div>
             </div>
 
-            <div className={'hidden xl:block absolute -right-[320px] top-[200px] w-[896px] h-[120%] z-0'}>
+            <div className={'hidden xl:block absolute -right-[320px] top-[200px] w-[896px] h-full z-0'}>
               <ModalGetDemoBackground />
             </div>
 

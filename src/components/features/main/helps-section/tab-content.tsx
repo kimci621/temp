@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { CircularProgress } from '@/components/ui/circular-progress';
 import { AnimatePresence, motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 const DynamicDemoDialog = dynamic(() => import('../../get-demo-dialog').then((c) => c.GetDemoDialog), {});
 
@@ -16,16 +17,26 @@ interface CustomTabContentProps {
   bgStyle: string;
   link: string;
   list: string[];
+  activeTab: string;
 }
 
-export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, label, list }: CustomTabContentProps) {
-  const progressValue = {
-    0: 1,
-    25: 33,
-    50: 66,
-    100: 100,
-  };
+export function MainHelpsSectionTabContent({
+  title,
+  progress,
+  imgPath,
+  bgStyle,
+  label,
+  list,
+  activeTab,
+}: CustomTabContentProps) {
+  const [progressValue, setProgressValue] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgressValue(progressValue + 1);
+    }, 40);
+    return () => clearInterval(interval);
+  });
   return (
     <div className="grid w-full">
       <div className={cn(bgStyle, 'transition-all relative overflow-hidden hidden xl:block')}>
@@ -111,7 +122,8 @@ export function MainHelpsSectionTabContent({ title, progress, imgPath, bgStyle, 
 
         <div className={'absolute top-[24px] right-[36px]'}>
           <CircularProgress
-            value={progressValue[progress as keyof typeof progressValue]}
+            key={activeTab}
+            value={progressValue}
             size={52}
             strokeWidth={5}
             labelClassName="text-xl font-bold"

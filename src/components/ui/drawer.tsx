@@ -155,6 +155,7 @@ export function Drawer({
                       onClick={() => onClose()}
                       className={'text-(--text-light)'}
                       size={'icon'}
+                      id={'close-drawer-button'}
                     >
                       <XIcon />
                     </Button>
